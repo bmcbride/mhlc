@@ -90,6 +90,9 @@
               <li>
                 <a class="item-link list-button popover-close" onclick="launchGmaps();">Open View in Google Maps</a>
               </li>
+              <li>
+                <a class="item-link list-button popover-close" onclick="startMeasurement();">Measure Distance</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -209,6 +212,7 @@
             </div>
             <div class="page-content">
               <div id="map" class="map">
+                <div class="crosshair" id="crosshair"></div>
                 <div class="fab fab-right-bottom" id="rotate-btn" style="bottom: 96px; right: 10px; display: none;">
                   <a href="#" onclick="app.map.getView().rotate(0);">
                     <i class="icon material-icons" id="rotate-icon">navigation</i>
