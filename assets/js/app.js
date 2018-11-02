@@ -486,7 +486,7 @@ function iosChecks() {
     if (parseFloat(app.device.osVersion) < 11.3) {
       app.dialog.alert("This app is not fully supported on devices running iOS < 11.3.", "Warning");
     }
-    if (("standalone" in window.navigator) && (!window.navigator.standalone)) {
+    if (!app.device.standalone) {
       if (!localStorage.getItem("dismissPrompt")) {
         app.toast.create({
           text: "Tap the <img src='assets/img/ios-share.png' height='18px'> button below to Add to Home Screen.",
