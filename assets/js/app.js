@@ -511,6 +511,7 @@ function saveMap(config) {
       app.request({
         url: config.url,
         method: "GET",
+        cache: false,
         xhrFields: {
           responseType: "arraybuffer"
         },
