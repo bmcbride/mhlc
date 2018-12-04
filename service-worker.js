@@ -15,7 +15,7 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache-11.02.18.5';
+const PRECACHE = 'precache-12.04.18.1';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
@@ -30,11 +30,11 @@ const PRECACHE_URLS = [
   'assets/img/mhlc-logo.jpg',
   'assets/img/crosshair.svg',
   'assets/img/ios-share.png',
-  'assets/vendor/framework7-3.5.0/css/framework7.min.css',
+  'assets/vendor/framework7-3.5.2/css/framework7.min.css',
   'assets/vendor/openlayers-5.2.0/ol.css',
   'assets/css/app.css',
   'assets/fonts/MaterialIcons-Regular.woff2',
-  'assets/vendor/framework7-3.5.0/js/framework7.min.js',
+  'assets/vendor/framework7-3.5.2/js/framework7.min.js',
   'assets/vendor/localForage-1.7.3/localforage.min.js',
   'assets/vendor/openlayers-5.2.0/ol.js',
   'assets/vendor/proj4js-2.5.0/proj4.js',
