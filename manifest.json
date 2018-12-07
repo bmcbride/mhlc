@@ -1,16 +1,17 @@
 {
   "name": "Mohawk Hudson Maps",
-  "short_name": "MH Maps",
+  "short_name": "MoHud Maps",
+  "description": "Save your favorite Mohawk Hudson Land Conservancy maps to your mobile device for offline viewing and navigation!",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color":  "#2196f3",
+  "theme_color": "#2196f3",
+  "scope": "/mhlc/",
   "icons": [
     {
       "src": "assets/img/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
-  ],
-  "start_url": "index.html",
-  "theme_color": "#2196f3",
-  "background_color":  "#2196f3",
-  "display": "standalone",
-  "scope": "/mhlc/"
+  ]
 }
