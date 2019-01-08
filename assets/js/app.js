@@ -441,6 +441,7 @@ app.functions = {
         state: app.map.getView().getState()
       }));
     }).catch(function(err) {
+      app.preloader.hide();
       app.dialog.alert(err, "Map load error");
     });
   },
