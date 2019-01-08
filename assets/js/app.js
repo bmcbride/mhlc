@@ -500,7 +500,7 @@ app.functions = {
 
   saveMap: function(config) {
     if (navigator.onLine) {
-      app.dialog.confirm("Save <b>" + config.name + "</b> map to your device?", "Confirm", function() {
+      app.dialog.confirm("Save <b>" + config.name + "</b> map to your device?", null, function() {
         app.dialog.progress("Downloading map...");
   
         app.request({
@@ -541,7 +541,7 @@ app.functions = {
   },
 
   deleteMap: function(key) {
-    app.dialog.confirm("Are you sure you want to remove this map from your device?", "Remove map", function() {
+    app.dialog.confirm("Are you sure you want to remove this map from your device?", null, function() {
       sessionStorage.removeItem("settings");
       app.mapStore.removeItem(key).then(function () {
         app.functions.loadSavedMaps();
@@ -550,7 +550,7 @@ app.functions = {
   },
 
   deleteAllMaps: function(){
-    app.dialog.confirm("Are you sure you want to remove all saved maps from your device?", "Remove saved maps", function() {
+    app.dialog.confirm("Are you sure you want to remove all saved maps from your device?", null, function() {
       sessionStorage.removeItem("settings");
       localStorage.removeItem("dismissPrompt");
       app.mapStore.clear().then(function() {
