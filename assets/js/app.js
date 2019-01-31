@@ -337,21 +337,18 @@ app.functions = {
           $$("#map-list").append(li);
           if (app.utils.parseUrlQuery(document.URL).map && (map.name == app.utils.parseUrlQuery(document.URL).map)) {
             app.activeLayer = map.name;
+            app.functions.setMap(app.activeLayer);
             window.history.replaceState(null, null, window.location.pathname);
             app.views.main.router.navigate("/map/");
           }
         }
 
-        if (app.views.current.router.currentRoute.url == "/map/") {
+        if (app.views.current.router.currentRoute.url == "/map/" && !app.activeLayer) {
           if (sessionStorage.getItem("settings")) {
             // $$("#gps-btn").removeClass("disabled");
             app.geolocation.setTracking(true);
             const settings = JSON.parse(sessionStorage.getItem("settings"));
-            if (app.activeLayer) {
-              app.functions.setMap(app.activeLayer);
-            } else {
-              app.functions.setMap(settings.activeLayer, settings); 
-            }
+            app.functions.setMap(settings.activeLayer, settings);
             if (settings.basemap) {
               $$("input[type=radio][name=basemap][value='" + settings.basemap + "']").prop("checked", true).trigger("change");
             }
