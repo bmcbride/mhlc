@@ -15,7 +15,7 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache-01.08.18.2';
+const PRECACHE = 'precache-01.31.19.1';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
@@ -24,21 +24,34 @@ const PRECACHE_URLS = [
   './', // Alias for index.html
   'manifest.json',
   'assets/img/apple-touch-icon.png',
-  'assets/img/favicon-32x32.png',
-  'assets/img/favicon-16x16.png',
   'assets/img/android-chrome-192x192.png',
   'assets/img/mhlc-logo.jpg',
   'assets/img/crosshair.svg',
   'assets/img/ios-share.png',
-  'assets/vendor/framework7-3.6.3/css/framework7.min.css',
+  'assets/vendor/framework7-4.0.0-beta.34/css/framework7.bundle.min.css',
   'assets/vendor/openlayers-5.3.0/ol.css',
   'assets/css/app.css',
   'assets/fonts/MaterialIcons-Regular.woff2',
-  'assets/vendor/framework7-3.6.3/js/framework7.min.js',
-  'assets/vendor/localForage-1.7.3/localforage.min.js',
+  'assets/vendor/framework7-4.0.0-beta.34/js/framework7.bundle.min.js',
   'assets/vendor/openlayers-5.3.0/ol.js',
   'assets/vendor/proj4js-2.5.0/proj4.js',
-  'assets/js/app.js'
+  'assets/js/app.js',
+  'maps/2018-Wolf-Creek-Falls-Preserve-Map.jpg',
+  'maps/AlbCo_RailTrail.jpg',
+  'maps/Bennett-Hill-Preserve-2017-new-logo.jpg',
+  'maps/Bozenkill_Preserve2.jpg',
+  'maps/Fox_Preserve-10-3-17.jpg',
+  'maps/Holt_Preserve.jpg',
+  'maps/MHLC-Keleher-Preserve-Update-2017.jpg',
+  'maps/Mosher-Marsh-Update-2017.jpg',
+  'maps/Normanskill_Preserve.jpg',
+  'maps/Phillipinkill_Preserve.jpg',
+  'maps/Schiffendecker_Preserve.jpg',
+  'maps/SchoharieCreek_Preserve.jpg',
+  'maps/StrawberryFields_Preserve.jpg',
+  'maps/Swift_Preserve1.jpg',
+  'maps/VanDyke_Entire_Preserve.jpg',
+  'maps/Winn_Preserve-2017-map.jpg'
 ];
 
 // The install handler takes care of precaching the resources we always need.

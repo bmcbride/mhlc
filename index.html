@@ -1,157 +1,179 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130611306-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-
-      gtag("config", "UA-130611306-1");
-    </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#2196f3">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0084e7">
-    <meta name="description" content="Save your favorite Mohawk Hudson Land Conservancy maps to your mobile device for offline viewing and navigation!">
+    <meta name="description" content="Your favorite Mohawk Hudson Land Conservancy preserve maps saved to your mobile device for offline viewing and navigation!">
     <meta name="author" content="Bryan McBride">
     <title>Mohawk Hudson Maps</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-    <link rel="stylesheet" href="assets/vendor/framework7-3.6.3/css/framework7.min.css">
+    <link rel="stylesheet" href="assets/vendor/framework7-4.0.0-beta.34/css/framework7.bundle.min.css">
     <link rel="stylesheet" href="assets/vendor/openlayers-5.3.0/ol.css">
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
   <body>
     <div id="app">
       <div class="statusbar"></div>
-      <div class="popover" id="tool-popover">
-        <div class="popover-inner">
-          <div class="block-title" style="margin: 16px;">Map Opacity</div>
-          <div class="list simple-list no-hairlines">
-            <ul>
-              <li style="line-height: 100%;">
-                <div class="item-cell width-auto flex-shrink-0">
-                  <a href="#" class="link icon-only" onclick="app.functions.decreaseOpacity();">
-                    <i class="icon material-icons">remove_circle_outline</i>
+      <div class="panel panel-left panel-cover">
+          <div class="view">
+            <div class="page">
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="title">Welcome!</div>
+                  <div class="right">
+                    <a href="#" class="link icon-only panel-close" data-panel="right">
+                      <i class="icon material-icons">close</i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="page-content">
+                <div class="block">
+                    <p class="text-align-center">
+                      <a href="https://mohawkhudson.org/" class="external"><img src="assets/img/mhlc-logo.jpg" style="max-width: 100%;"></a>
+                    </p>
+                    <p>The <a href="https://mohawkhudson.org/" class="external">Mohawk Hudson Land Conservancy</a> has 18 preserves that are open to the public for recreational activities such as walking, hiking, snowshoeing, and cross-country skiing. We invite you to explore them!</p>
+                    <p>All preserves are open to the public, free of charge, from dawn to dusk. Parking is available at each location. Please abide by the following rules and regulations for your enjoyment, as well as for the enjoyment of others, and for further protection of the preserves.</p>
+                    <p>Remember: <strong>Always</strong> sign in and out at the trail registers, located within the kiosk at each preserve.</p>
+                  </div>
+                  <div class="block-title">Open Source Libraries</div>
+                  <div class="list links-list">
+                    <ul>
+                      <li>
+                        <a href="https://framework7.io/" class="external">Framework7</a>
+                      </li>
+                      <li>
+                        <a href="http://openlayers.org/" class="external">OpenLayers</a>
+                      </li>
+                      <li>
+                        <a href="http://proj4js.org/" class="external">Proj4js</a>
+                      </li>
+                      <li>
+                        <a href="https://material.io/icons/" class="external">Material Icons</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="block-title">Credits</div>
+                  <div class="list simple-list">
+                    <ul>
+                      <li>Developed by Bryan McBride</li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="panel panel-right panel-cover">
+        <div class="view">
+          <div class="page">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="title">Settings</div>
+                <div class="right">
+                  <a href="#" class="link icon-only panel-close" data-panel="right">
+                    <i class="icon material-icons">close</i>
                   </a>
                 </div>
-                <div class="item-cell flex-shrink-3">
-                  <div class="range-slider" data-label="false"></div>
-                </div>
-                <div class="item-cell width-auto flex-shrink-0">
-                  <a href="#" class="link icon-only" onclick="app.functions.increaseOpacity();">
-                    <i class="icon material-icons">add_circle_outline</i>
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="block-title" style="margin: 16px;">Online Basemap</div>
-          <div class="list no-hairlines">
-            <ul>
-              <li>
-                <label class="item-radio item-content">
-                  <input type="radio" name="basemap" value="osm"/>
-                  <i class="icon icon-radio"></i>
-                  <div class="item-inner">
-                    <div class="item-title">Street Map</div>
-                  </div>
-                </label>
-              </li>
-              <li>
-                <label class="item-radio item-content">
-                  <input type="radio" name="basemap" value="nysdop"/>
-                  <i class="icon icon-radio"></i>
-                  <div class="item-inner">
-                    <div class="item-title">Aerial Image</div>
-                  </div>
-                </label>
-              </li>
-              <li>
-                <label class="item-radio item-content">
-                  <input type="radio" name="basemap" value="topo"/>
-                  <i class="icon icon-radio"></i>
-                  <div class="item-inner">
-                    <div class="item-title">Topo Map</div>
-                  </div>
-                </label>
-              </li>
-              <li>
-                <label class="item-radio item-content">
-                  <input type="radio" name="basemap" value="none" checked="checked"/>
-                  <i class="icon icon-radio"></i>
-                  <div class="item-inner">
-                    <div class="item-title">None</div>
-                  </div>
-                </label>
-              </li>
-            </ul>
-          </div>
-          <div class="block-title" style="margin: 16px;">Other</div>
-          <div class="list">
-            <ul>
-              <li>
-                <a class="item-link list-button popover-close" onclick="app.functions.launchGmaps();">Open View in Google Maps</a>
-              </li>
-              <li>
-                <a class="item-link list-button popover-close" onclick="app.functions.startMeasurement();">Measure Distance</a>
-              </li>
-            </ul>
+              </div>
+            </div>
+            <div class="page-content" style="overflow: auto;">
+              <div class="block-title">Map Opacity</div>
+              <div class="list simple-list">
+                <ul>
+                  <li style="line-height: 100%;">
+                    <div class="item-cell width-auto flex-shrink-0">
+                      <a href="#" class="link icon-only" onclick="app.functions.decreaseOpacity();">
+                        <i class="icon material-icons">remove_circle_outline</i>
+                      </a>
+                    </div>
+                    <div class="item-cell flex-shrink-3">
+                      <div class="range-slider" data-label="false"></div>
+                    </div>
+                    <div class="item-cell width-auto flex-shrink-0">
+                      <a href="#" class="link icon-only" onclick="app.functions.increaseOpacity();">
+                        <i class="icon material-icons">add_circle_outline</i>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="block-title">Basemaps</div>
+              <div class="list">
+                <ul>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="basemap" value="osm"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Street Map</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="basemap" value="nysdop"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Aerial Image</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="basemap" value="topo"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">Topo Map</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="item-radio item-content">
+                      <input type="radio" name="basemap" value="none" checked="checked"/>
+                      <i class="icon icon-radio"></i>
+                      <div class="item-inner">
+                        <div class="item-title">None</div>
+                      </div>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div class="block-title">Tools</div>
+              <div class="list">
+                <ul>
+                  <li><a class="item-link list-button panel-close" onclick="app.map.getView().setRotation(0); app.map.getView().fit(app.layers.image.getExtent(), {constrainResolution: false});">Zoom to Map</a></li>
+                  <li><a class="item-link list-button panel-close" onclick="app.functions.startMeasurement();">Measure Distance</a></li>
+                  <li><a class="item-link list-button panel-close" onclick="app.functions.getDirections();">Driving Directions</a></li>
+                  <li><a class="item-link list-button panel-close" onclick="app.functions.launchGmaps();">Open Google Maps</a></li>
+                  <li><a class="item-link list-button panel-close external" id="info-link" href="#" target="_blank">Additional Info</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Views/Tabs container -->
-      <div class="views tabs ios-edges">
-
-        <!-- Tabbar for switching views-tabs -->
-        <div class="toolbar tabbar toolbar-bottom-md">
-          <div class="toolbar-inner">
-            <a href="#device-view" class="tab-link tab-link-active" title="Saved Maps">
-              <span class="tabbar-label">Saved Maps</span>
-            </a>
-            <a href="#list-view" class="tab-link" title="Available Maps">
-              <span class="tabbar-label">Available Maps</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Device View -->
-        <div id="device-view" class="view view-main view-init tab tab-active">
-          <div class="page" data-name="index">
-            <div class="navbar">
-              <div class="navbar-inner sliding">
-                <div class="title sliding">Mohawk Hudson Maps</div>
-                <div class="right">
-                  <a href="#" class="link icon-only" onclick="app.sortable.toggle('.sortable');">
-                    <i class="icon material-icons" id="sort-icon">sort</i>
-                  </a>
-                  <a href="/info/" class="link icon-only">
-                    <i class="icon material-icons">info</i>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="page-content">
-              <div class="list sortable">
-                <ul id="device-list"></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- List View -->
-        <div id="list-view" class="view view-init tab">
-          <div class="page">
-            <div class="navbar">
-              <div class="navbar-inner sliding">
-                <div class="title sliding">Available Maps</div>
+      <!-- Your main view, should have "view-main" class -->
+      <div id="view-home" class="view view-main view-init">
+        <!-- Page, data-name contains page name which can be used in page callbacks -->
+        <div class="page" data-name="index">
+          <!-- Top Navbar -->
+          <div class="navbar">
+            <div class="navbar-inner sliding">
+              <div class="left">
+                <a href="#" class="link icon-only panel-open" data-panel="left">
+                  <i class="icon material-icons">menu</i>
+                </a>
+              </div>  
+              <div class="title sliding">Mohawk Hudson Maps</div>
                 <div class="right">
                   <a class="link icon-only searchbar-enable" data-searchbar=".maplist-searchbar">
                     <i class="icon material-icons">search</i>
@@ -168,29 +190,22 @@
                   </div>
                 </form>
               </div>
+          </div>
+
+          <div class="page-content ptr-content" data-ptr-distance="55" id="list-tab">
+            <div class="searchbar-backdrop"></div>
+            <div class="ptr-preloader">
+              <div class="preloader"></div>
+              <div class="ptr-arrow"></div>
             </div>
-            <div class="page-content ptr-content" data-ptr-distance="55" id="list-tab">
-              <div class="searchbar-backdrop"></div>
-              <div class="ptr-preloader">
-                <div class="preloader"></div>
-                <div class="ptr-arrow"></div>
-              </div>
-              <div class="list simple-list searchbar-not-found">
-                <ul>
-                  <li>Nothing found</li>
-                </ul>
-              </div>
-              <div class="list search-list searchbar-found">
-                <ul id="map-list">
-                  <li>
-                    <div class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title text-color-red">Network connection required to load maps!</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
+            <div class="list simple-list searchbar-not-found">
+              <ul>
+                <li>Nothing found</li>
+              </ul>
+            </div>
+            
+            <div class="list sortable search-list searchbar-found">
+              <ul id="map-list"></ul>
             </div>
           </div>
         </div>
@@ -201,20 +216,16 @@
         <div class="view">
           <div class="page" data-name="map">
             <div class="navbar">
-              <div class="navbar-inner sliding">
+              <div class="navbar-inner">
                 <div class="left">
-                  <a href="#" class="link back">
-                    <i class="icon icon-back"></i>
-                    <span class="ios-only">Back</span>
+                  <a href="#" class="link popup-close">
+                    <i class="icon material-icons">arrow_back</i>
                   </a>
                 </div>
-                <div class="title sliding" id="map-title"></div>
+                <div class="title" id="map-title"></div>
                 <div class="right">
-                  <a href="#" class="link icon-only" onclick="app.map.getView().setRotation(0); app.map.getView().fit(app.layers.image.getExtent(), {constrainResolution: false});">
-                    <i class="icon material-icons">zoom_out_map</i>
-                  </a>
-                  <a href="#" class="link icon-only popover-open" data-popover="#tool-popover">
-                    <i class="icon material-icons">more_vert</i>
+                  <a href="#" class="link icon-only panel-open" data-panel="right">
+                    <i class="icon material-icons">menu</i>
                   </a>
                 </div>
               </div>
@@ -237,130 +248,8 @@
           </div>
         </div>
       </div>
-
-      <!-- Info Popup -->
-      <div class="popup popup-tablet-fullscreen" id="info-popup">
-        <div class="view">
-          <div class="page">
-            <div class="navbar">
-              <div class="navbar-inner sliding">
-                <div class="left">
-                  <a href="#" class="link back">
-                    <i class="icon icon-back"></i>
-                    <span class="ios-only">Back</span>
-                  </a>
-                </div>
-                <div class="title">Mohaw Hudson Maps</div>
-              </div>
-            </div>
-            <div class="page-content">
-              <div class="block">
-                <p class="text-align-center">
-                  <a href="https://mohawkhudson.org/" class="external"><img src="assets/img/mhlc-logo.jpg" style="max-width: 300px;"></a>
-                </p>
-                <p>The <a href="https://mohawkhudson.org/" class="external">Mohawk Hudson Land Conservancy</a> has 18 preserves that are open to the public for recreational activities such as walking, hiking, snowshoeing, and cross-country skiing. We invite you to explore them!</p>
-                <p>All preserves are open to the public, free of charge, from dawn to dusk. Parking is available at each location. Please abide by the following rules and regulations for your enjoyment, as well as for the enjoyment of others, and for further protection of the preserves.</p>
-                <p>Remember: <strong>Always</strong> sign in and out at the trail registers, located within the kiosk at each preserve.</p>
-              </div>
-              <div class="list">
-                <ul>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media">
-                        <i class="icon material-icons">storage</i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">Total storage:</div>
-                        <div class="item-after" id="total-storage"></div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <a href="#" class="item-link item-content no-chevron" onclick="app.functions.deleteAllMaps();">
-                      <div class="item-media">
-                        <i class="icon material-icons">delete</i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">Remove saved maps</div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:mcbride.bryan@gmail.com?Subject=Map%20App" class="item-link external item-content">
-                      <div class="item-media">
-                        <i class="icon material-icons">email</i>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">Developed by Bryan McBride</div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="block-title">Help Documentation</div>
-              <div class="list accordion-list">
-                <ul>
-                  <li class="accordion-item"><a href="#" class="item-content item-link">
-                      <div class="item-inner">
-                        <div class="item-title">Available maps</div>
-                      </div></a>
-                    <div class="accordion-item-content">
-                      <div class="block">
-                        <p>All maps produced and provided by <a href="https://mohawkhudson.org/" class="external">The Mohawk Hudson Land Conservancy</a>. Please contact us if you find any errors or issues with this application. All map errors or omissions should be directed to MHLC.
-                      </div>
-                    </div>
-                  </li>
-                  <li class="accordion-item"><a href="#" class="item-content item-link">
-                      <div class="item-inner">
-                        <div class="item-title">Saved maps</div>
-                      </div></a>
-                    <div class="accordion-item-content">
-                      <div class="block">
-                        <p>Tap on one of the available maps to save it to your device for offline use. Saved maps can be reordered by tapping the <i class="icon material-icons">sort</i> button in the navbar. Individual maps can be removed from device storage by long pressing on the list item and tapping <i>Remove map from device</i>. You can clear all maps from storage by tapping the <i>Remove saved maps</i> button above.</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="accordion-item"><a href="#" class="item-content item-link">
-                      <div class="item-inner">
-                        <div class="item-title">Map view</div>
-                      </div></a>
-                    <div class="accordion-item-content">
-                      <div class="block">
-                        <p>Tap on a saved map to open it. You can zoom in and out and pan around using pinch and swipe gestures. If you are located within the map bounds and have allowed access to your GPS, your location will be identified as a blue dot on the map. If you have internet access, you can toggle an online basemap below your overlay map by tapping on the <i class="icon material-icons">more_vert</i> button in the navbar. The overlay map opacity can be adjusted with the slider.</p>
-                        <p>The active map and view settings are saved for the session but will be cleared out when the app or browser is closed.</p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="block-title">Open Source Libraries</div>
-              <div class="list links-list">
-                <ul>
-                  <li>
-                    <a href="https://framework7.io/" class="external">Framework7</a>
-                  </li>
-                  <li>
-                    <a href="http://openlayers.org/" class="external">OpenLayers</a>
-                  </li>
-                  <li>
-                    <a href="http://proj4js.org/" class="external">Proj4js</a>
-                  </li>
-                  <li>
-                    <a href="https://localforage.github.io/localForage/" class="external">localForage</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="block-title">Credits</div>
-              <div class="block">
-                Material design icons courtesy of <a href="https://material.io/icons/" class="external">Google</a>.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <script src="assets/vendor/framework7-3.6.3/js/framework7.min.js"></script>
-    <script src="assets/vendor/localForage-1.7.3/localforage.min.js"></script>
+    <script src="assets/vendor/framework7-4.0.0-beta.34/js/framework7.bundle.min.js"></script>
     <script src="assets/vendor/openlayers-5.3.0/ol.js"></script>
     <script src="assets/vendor/proj4js-2.5.0/proj4.js"></script>
     <script src="assets/js/app.js"></script>

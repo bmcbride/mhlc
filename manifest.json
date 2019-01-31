@@ -1,7 +1,7 @@
 {
   "name": "Mohawk Hudson Maps",
   "short_name": "MoHud Maps",
-  "description": "Save your favorite Mohawk Hudson Land Conservancy maps to your mobile device for offline viewing and navigation!",
+  "description": "Your favorite Mohawk Hudson Land Conservancy maps saved to your mobile device for offline viewing and navigation!",
   "start_url": "index.html",
   "display": "standalone",
   "background_color":  "#2196f3",
