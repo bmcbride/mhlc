@@ -1,129 +1,156 @@
 [{
   "name": "Albany County Rail Trail",
   "description": "The Albany County Helderberg-Hudson Rail Trail (ACHHRT) is a community treasure providing exciting opportunities for recreation, exercise & fitness, and zero carbon transportation, amidst beautiful vistas of natural scenery.",
-  "attribution": "<a href=\"https://mohawkhudson.org/helderberg-hudson-rail-trail/\">mohawkhudson.org</a>",
+  "directions": [{
+    "label": "South Pearl St. Parking (P1)",
+    "coordinates": [-73.76709,42.62756]
+  }, {
+    "label": "Veterans Memorial Park (P2)",
+    "coordinates": [-73.82720,42.62454]
+  }, {
+    "label": "Kenwood Ave. Parking (P3)",
+    "coordinates": [-73.83392,42.62283]
+  }, {
+    "label": "Adams St. Parking (P4)",
+    "coordinates": [-73.83574,42.62366]
+  }, {
+    "label": "Kenwood Ave. Parking (P5)",
+    "coordinates": [-73.86284,42.62914]
+  }, {
+    "label": "Voorheesville Ave. Parking (P6)",
+    "coordinates": [-73.92460,42.65413]
+  }, {
+    "label": "Grove St. Pavilion Parking (P7)",
+    "coordinates": [-73.92862,42.65568]
+  }],
   "url": "maps/AlbCo_RailTrail.jpg",
-  "size": "1.7 MB",
+  "link": "https://mohawkhudson.org/helderberg-hudson-rail-trail/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [643674.386, 1378668.602, 691677.074, 1394668.984]
 }, {
   "name": "Bennett Hill Preserve",
   "description": "This 155 acre property was a gift from Dr. Jerry Bilinski of North Chatham in 1998. The hill towers over Clarksville and stands only a short distance from the base of the Helderberg Escarpment. Although the top of the hill is only 400 feet above the surrounding land, it offers striking views of the Helderbergs to the north and west, and Albany to the east.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/bennett-hill-preserve/\">mohawkhudson.org</a>",
+  "directions": [-73.96568,42.57161],
   "url": "maps/Bennett-Hill-Preserve-2017-new-logo.jpg",
-  "size": "257 KB",
+  "link": "https://mohawkhudson.org/our-preserves/bennett-hill-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [634726.026, 1356754.879, 639542.097, 1362990.739]
 }, {
   "name": "Bozen Kill Preserve",
   "description": "Flowing from the Helderberg Escarpment, the Bozen Kill is little known beyond Altamont and the Hilltowns. The stream originates from wetlands in Schenectady County and Duane Lake near Delanson and builds as it heads off the mountain.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/bozen-kill-protected-area/\">mohawkhudson.org</a>",
+  "directions": [-74.04627,42.71482],
   "url": "maps/Bozenkill_Preserve2.jpg",
-  "size": "527 KB",
+  "link": "https://mohawkhudson.org/our-preserves/bozen-kill-protected-area/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [608625.837, 1412406.366, 614492.864, 1416940.765]
 }, {
   "name": "Fox Preserve",
   "description": "This 70-acre property in Colonie was donated to the Mohawk Hudson Land Conservancy by Dr. Patricia Fox in 2015. Dr. Fox owned the property for over 30 years, and it is one of the last remaining areas of open space in this area of the Town of Colonie. Through her generous donation, this Preserve was opened to the public on October 21st, 2017.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/fox-preserve-2/\">mohawkhudson.org</a>",
+  "directions": [-73.793953,42.775283],
   "url": "maps/Fox_Preserve-10-3-17.jpg",
-  "size": "436 KB",
+  "link": "https://mohawkhudson.org/our-preserves/fox-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [679476.228, 1434076.371, 683877.638, 1437476.910]
 }, {
   "name": "Holt Preserve",
   "description": "Winifred Matthews Holt Preserve is a 148-acre property on the western face of Copeland Hill in the Town of New Scotland. The preserve is visible from Route 32 and from neighboring hills. The preserve rises at the edge of the flat area known as Indian Fields. Dr. William Holt and Winifred Matthews Holt donated this hillside to the Mohawk Hudson Land Conservancy in 1994.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/holt-preserve/\">mohawkhudson.org</a>",
+  "directions": [-73.92737,42.54389],
   "url": "maps/Holt_Preserve.jpg",
-  "size": "272 KB",
+  "link": "https://mohawkhudson.org/our-preserves/holt-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [643073.432, 1350804.808, 649311.403, 1355619.190]
 }, {
   "name": "Keleher Preserve",
   "description": "The original 287 acre property was a gift of Katherine and John Barber of Seattle, WA in 2010. The property, better known as Wolf Hill, is part of the Helderberg Escarpment. In 2014 MHLC was able to purchase an additional 160 acres from Mark Warner, a relative of the Barbers, bringing the preserves total acreage to 447.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/keleher-preserve/\">mohawkhudson.org</a>",
+  "directions": [-74.00712,42.58826],
   "url": "maps/MHLC-Keleher-Preserve-Update-2017.jpg",
-  "size": "196 KB",
+  "link": "https://mohawkhudson.org/our-preserves/keleher-preserve/",
   "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [2379318.397,  971483.96, 2386547.909, 980836.730]
 }, {
   "name": "Mosher Marsh Preserve",
   "description": "Ellie Peters donated this 43-acre preserve to MHLC in 2008. It consists largely of a natural wetland with several shallow man-made ponds to enhance wildlife habitat. A small stream, a tributary to the Chuctanunda Creek, flows through the middle of the property. The site also contains a mix of fields with woods and a historic family cemetery. There is a loop trail with a 300 foot boardwalk that runs through the wetland.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/mosher-marsh/\">mohawkhudson.org</a>",
+  "directions": [-74.14629,42.95397],
   "url": "maps/Mosher-Marsh-Update-2017.jpg",
-  "size": "215 KB",
+  "link": "https://mohawkhudson.org/our-preserves/mosher-marsh/",
   "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [2333631.287, 1106029.264, 2336752.883, 1108438.682]
 }, {
   "name": "Normans Kill Preserves",
   "description": "The Normans Kill Preserves consist of three parcels that were obtained from Albany County in 2005 because of non-payment of taxes. The three parcels total 46 acres. They are on both sides of the year-2000 Delaware Avenue landslide; and include over a half-mile of the frontage on the Normans Kill in an area directly across from the City of Albany’s Stevens Farm.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/normans-kill-preserves/\">mohawkhudson.org</a>",
+  "directions": [{
+    "label": "Normans Kill West",
+    "coordinates": [-73.81245,42.63069]
+  }, {
+    "label": "Normans Kill East",
+    "coordinates": [-73.80122,42.63351]
+  }],
   "url": "maps/Normanskill_Preserve.jpg",
-  "size": "485 KB",
+  "link": "https://mohawkhudson.org/our-preserves/normans-kill-preserves/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [676496.712, 1383556.950, 680530.031, 1386675.168]
 }, {
   "name": "Phillipin Kill Preserve",
   "description": "This 20-acre property was given to the Conservancy in 2000. The donation was part of an agreement between the developer of the Mansions apartment complex and the Army Corps of Engineers offsetting impacts to the wetland caused by the development. The property is located less than a mile west of Bethlehem Central High School, with frontage on Delaware Avenue and Fisher Boulevard.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/phillipin-kill-preserve/\">mohawkhudson.org</a>",
+  "directions": [-73.86915,42.61177],
   "url": "maps/Phillipinkill_Preserve.jpg",
-  "size": "566 KB",
+  "link": "https://mohawkhudson.org/our-preserves/phillipin-kill-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [660735.581, 1375445.136, 662435.005, 1377646.120]
 }, {
   "name": "Schiffendecker Farm Preserve",
   "description": "The Schiffendecker Farm Preserve is located in the Town of Bethlehem between Bender Lane and Old Kenwood Avenue along the Route 32 Bypass. The property is located to the west of the WalMart/Lowes shopping complex located along Route 9W. The 39.8-acre property has access along Bender Lane.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/schiffendecker-farm-preserve/\">mohawkhudson.org</a>",
+  "directions": [-73.79646,42.60915],
   "url": "maps/Schiffendecker_Preserve.jpg",
-  "size": "500 KB",
+  "link": "https://mohawkhudson.org/our-preserves/schiffendecker-farm-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [680757.783, 1375604.85, 683305.450, 1378904.806]
 }, {
   "name": "Schoharie Creek Preserve",
   "description": "The 198-acre Schoharie Creek Preserve was given to the Conservancy in 1998 by Drs. Lester Citrin and Clifford Tepper of Schenectady. The preserve is located in Montgomery County on the west bank of the Schoharie Creek, about a mile north of Burtonsville.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/schoharie-creek-preserve/\">mohawkhudson.org</a>",
+  "directions": [-74.26591,42.81722],
   "url": "maps/SchoharieCreek_Preserve.jpg",
-  "size": "261 KB",
+  "link": "https://mohawkhudson.org/our-preserves/schoharie-creek-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [551425.461, 1447646.694, 556669.921, 1454429.48]
 }, {
   "name": "Strawberry Fields Nature Preserve",
   "description": "Strawberry Fields is 118 acres of protected land. The property includes the nature preserve, a family homestead, and a working farm. The property was protected in 2013 under a conservation easement with MHLC. In 2017, Jeff Leon, steward of the preserve, officially opened Strawberry Fields Nature Preserve to the public.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/strawberry-fields-nature-preserve/\">mohawkhudson.org</a>",
+  "directions": [-74.12685,42.92562],
   "url": "maps/StrawberryFields_Preserve.jpg",
-  "size": "349 KB",
+  "link": "https://mohawkhudson.org/our-preserves/strawberry-fields-nature-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [590911.715, 1489213.758, 595311.403, 1492616.026]
 }, {
   "name": "Swift Wetland",
   "description": "This 21.6-acre wetland in Delmar, located directly across Delaware Avenue from the Bethlehem Central High School sports field, was a gift from the Swift Group. The Preserve was created to protect the wetlands remaining after homes were constructed on neighboring parcels. It includes a 1-acre man-made wetland, built to help compensate for the natural wetlands that were filled in.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/swift-wetland/\">mohawkhudson.org</a>",
+  "directions": [-73.85606,42.61600],
   "url": "maps/Swift_Preserve1.jpg",
-  "size": "374 KB",
+  "link": "https://mohawkhudson.org/our-preserves/swift-wetland/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [664399.762, 1377707.114, 666526.013, 1380458.051]
 }, {
   "name": "Van Dyke Preserve",
   "description": "The 33-acre Van Dyke Preserve was donated to Mohawk Hudson Land Conservancy in 2012 by the developers of the nearby VanDyke Spinney housing complex in association with the Town of Bethlehem.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/van-dyke-preserve/\">mohawkhudson.org</a>",
+  "directions": [-73.85583,42.59567],
   "url": "maps/VanDyke_Entire_Preserve.jpg",
-  "size": "473 KB",
+  "link": "https://mohawkhudson.org/our-preserves/van-dyke-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [664409.739, 1370073.771, 666961.449, 1373371.323]
 }, {
   "name": "Winn (Hudson and Nancy) Preserve",
   "description": "This preserve began as a 129 acre gift from Nancy Winn of Slingerlands. Later acquisitions increased its size to 208 acres. The property is along the Helderberg Escarpment and is geologically significant.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/winn-hudson-and-nancy-preserve/\">mohawkhudson.org</a>",
+  "directions": [-74.11673,42.68818],
   "url": "maps/Winn_Preserve-2017-map.jpg",
-  "size": "340 KB",
+  "link": "https://mohawkhudson.org/our-preserves/winn-hudson-and-nancy-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [594504.195, 1402268.570, 601840.019, 1407935.398]
 }, {
   "name": "Wolf Creek Falls Preserve",
   "description": "Wolf Creek Falls Preserve, opened in the Fall of 2007, consists of 135 acres in the Town of Knox, and was a gift of Steve Brown, a retired SUNY professor. This gorgeous parcel, which is open for public hiking, contains streams and waterfalls, a wetland, and numerous old stone walls.",
-  "attribution": "<a href=\"https://mohawkhudson.org/our-preserves/wolf-creek-falls-preserve/\">mohawkhudson.org</a>",
+  "directions": [-74.08549,42.72151],
   "url": "maps/2018-Wolf-Creek-Falls-Preserve-Map.jpg",
-  "size": "175 KB",
+  "link": "https://mohawkhudson.org/our-preserves/wolf-creek-falls-preserve/",
   "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [2353880.271, 1022378.684, 2358904.029, 1026264.535]
 }]

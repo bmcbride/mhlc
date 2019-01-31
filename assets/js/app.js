@@ -1,13 +1,9 @@
 $$ = Dom7;
 
-app = new Framework7({
+const app = new Framework7({
   root: "#app",
   theme: "md",
   init: false,
-  touch: {
-    tapHold: true,
-    disableContextMenu: false
-  },
   view: {
     stackPages: true,
     pushState: true,
@@ -18,19 +14,13 @@ app = new Framework7({
     path: "/",
     url: "index.html",
   }, {
-    name: "info",
-    path: "/info/",
-    popup: {
-      el: "#info-popup",
-    }
-  }, {
     name: "map",
     path: "/map/",
     popup: {
       el: "#map-popup",
       on: {
         close: function() {
-          app.popover.close();
+          app.panel.close("right");
           app.toast.close();
           app.measure.clearMeasure();
         },
@@ -43,29 +33,15 @@ app = new Framework7({
           app.preloader.show();
         },
         opened: function(e) {
-          $$("#gps-btn").removeClass("disabled");
+          // $$("#gps-btn").removeClass("disabled");
           app.geolocation.setTracking(true);
           if (app.activeLayer) {
-            app.functions.setMap(app.activeLayer.toString());  
+            app.functions.setMap(app.activeLayer);  
           }
         }
       }
     }
-  }],
-  on: {
-    sortableEnable: function(listEl) {
-      $$("#sort-icon").html("save");
-    },
-    sortableDisable: function(listEl) {
-      $$("#sort-icon").html("sort");
-      app.functions.orderList();
-    }
-  }
-});
-
-app.mapStore = localforage.createInstance({
-  name: "maps",
-  storeName: "saved_maps"
+  }]
 });
 
 app.layers = {
@@ -119,13 +95,13 @@ app.layers = {
     osm: new ol.layer.Tile({
       source: new ol.source.XYZ({
         url: "https://{a-c}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png",
-        attributions: "© <a href='http://openstreetmap.org' class='external'>OpenStreetMap</a> contributors, © <a href='https://carto.com/attribution' class='external'>CARTO</a> |"
+        attributions: "© <a href='http://openstreetmap.org' class='external'>OpenStreetMap</a> contributors, © <a href='https://carto.com/attribution' class='external'>CARTO</a>"
       })
     }),
     nysdop: new ol.layer.Tile({
       source: new ol.source.TileWMS({
         url: "https://orthos.dhses.ny.gov/ArcGIS/services/Latest/MapServer/WMSServer",
-        attributions: "<a href='https://gis.ny.gov/gateway/mg/webserv/webserv.html' class='external'>NYSDOP</a> |",
+        attributions: "<a href='https://gis.ny.gov/gateway/mg/webserv/webserv.html' class='external'>NYSDOP</a>",
         params: {
           "LAYERS": "0,1,2,3,4",
           "TILED": true
@@ -136,7 +112,7 @@ app.layers = {
     topo: new ol.layer.Tile({
       source: new ol.source.XYZ({
         url: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
-        attributions: "<a href='https://www.doi.gov' class='external'>U.S. Department of the Interior</a> | <a href='https://www.usgs.gov' class='external'>U.S. Geological Survey</a> | <a href='https://www.usgs.gov/laws/policies_notices.html' class='external'>Policies</a> |",
+        attributions: "<a href='https://www.doi.gov' class='external'>USDOI</a> | <a href='https://www.usgs.gov' class='external'>USGS</a> | <a href='https://www.usgs.gov/laws/policies_notices.html' class='external'>Policies</a>",
         maxZoom: 16
       })
     })
@@ -155,9 +131,9 @@ app.measure = {
   measuring: false,
   measurement: 0,
   formatLength: function(length) {
-    var meters = length * app.map.getView().getProjection().getMetersPerUnit();
-    var feet = meters * 3.2808;
-    var output;
+    const meters = length * app.map.getView().getProjection().getMetersPerUnit();
+    const feet = meters * 3.2808;
+    let output;
     if (feet > 1320) {
       output = (feet * 0.00018939).toFixed(2) + " " + "mi";
     } else {
@@ -174,15 +150,15 @@ app.measure = {
   },
   startMeasure: function() {
     app.measure.measuring = true;
-    var center = app.map.getView().getCenter();
-    var point = new ol.Feature(new ol.geom.Point(center));
+    const center = app.map.getView().getCenter();
+    const point = new ol.Feature(new ol.geom.Point(center));
     app.layers.measure.getSource().addFeature(point);
 
-    var origin = center;
-    var target = center;
-    var coord = [origin, target];
+    const origin = center;
+    let target = center;
+    let coord = [origin, target];
     app.measure.line = new ol.geom.LineString(coord);
-    var feature = new ol.Feature(app.measure.line);
+    const feature = new ol.Feature(app.measure.line);
     app.layers.measure.getSource().addFeature(feature);
 
     app.measure.drawLine = function() {
@@ -246,16 +222,48 @@ app.map = new ol.Map({
 
 app.functions = {
   launchGmaps: function() {
-    var coords = ol.proj.transform(app.map.getView().getCenter(), app.map.getView().getProjection().getCode(), "EPSG:4326");
-    var zoom = app.map.getView().getZoom();
-    var url = "https://www.google.com/maps/@?api=1&map_action=map&center="+coords[1]+","+coords[0]+"&zoom="+Math.round(zoom);
+    const coords = ol.proj.transform(app.map.getView().getCenter(), app.map.getView().getProjection().getCode(), "EPSG:4326");
+    const zoom = app.map.getView().getZoom();
+    const url = "https://www.google.com/maps/@?api=1&map_action=map&center="+coords[1]+","+coords[0]+"&zoom="+Math.round(zoom);
     window.open(url);
+  },
+
+  getDirections: function() {
+    if (app.directions) {
+      const directions = app.directions;
+      if (typeof(directions[0]) == "number") {
+        let url = "https://www.google.com/maps/dir/?api=1&destination="+directions[1]+","+directions[0];
+        window.open(url);
+      } else if (typeof(directions[0]) == "object") {
+        const locations = directions.map(function(location) {
+          return [{
+            text: location.label,
+            icon: "<i class='icon material-icons'>directions</i>",
+            onClick: function () {
+              let url = "https://www.google.com/maps/dir/?api=1&destination="+location.coordinates[1]+","+location.coordinates[0];
+              window.open(url);
+            }
+          }]
+        });
+
+        app.actions.create({
+          buttons: locations
+        }).open();
+      }
+    } else {
+      app.toast.create({
+        text: "No directions available.",
+        closeTimeout: 3000,
+        closeButton: true
+      }).open();
+    }
   },
 
   startMeasurement: function(){
     app.toast.create({
       text: "Tap to add measurement segments.",
       closeButton: true,
+      closeButtonText: "Clear",
       on: {
         close: function () {
           app.measure.clearMeasure();
@@ -268,34 +276,13 @@ app.functions = {
     }).open();
   },
 
-  calculateStorage: function(bytes) {
-    var kb = bytes / 1000;
-    if (kb > 1000) {
-      return (kb / 1000).toFixed(2) + " MB";
-    } else {
-      return kb.toFixed(0) + " KB";
-    }
-  },
-
-  orderList: function() {
-    $$("#device-list li a").each(function(i) {
-      var key = $$(this).attr("data-key");
-      app.mapStore.getItem(key).then(function (item) {
-        item.order = i;
-        app.mapStore.setItem(key, item);
-      }).catch(function(err) {
-        console.log(err);
-      });
-    });
-  },
-
   increaseOpacity: function() {
-    var slider = app.range.get(".range-slider");
+    const slider = app.range.get(".range-slider");
     slider.setValue(slider.getValue() + 5);
   },
 
   decreaseOpacity: function() {
-    var slider = app.range.get(".range-slider");
+    const slider = app.range.get(".range-slider");
     slider.setValue(slider.getValue() - 5);
   },
 
@@ -315,331 +302,193 @@ app.functions = {
                 localStorage.setItem("dismissPrompt", true);
               }
             }
-          }).open(); 
+          }).open();
         } 
       }
     }
   },
 
-  loadAvailableMaps() {
-    if (navigator.onLine) {
-      $$("#map-list").empty();
-      if (app.utils.parseUrlQuery(document.URL).config) {
-        localStorage.setItem("mapConfig", app.utils.parseUrlQuery(document.URL).config);
-        window.history.replaceState(null, null, window.location.pathname);
-      }
-      app.request({
-        url: localStorage.getItem("mapConfig") ? localStorage.getItem("mapConfig") : "maps.json",
-        method: "GET",
-        dataType: "json",
-        cache: false,
-        success: function (map) {
-          map.sort(function(a, b) {
-            return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
-          });
-          for (var i = 0; i < map.length; i++) {
-            var config = JSON.stringify(map[i]);
-            var li = `<li>
-              <a href="#" class="item-link item-content no-chevron" onclick='app.functions.saveMap(${config});'>
-                <div class="item-inner">
-                  <div class="item-title">
-                    ${map[i].name}
-                    <div class="item-footer">${map[i].description}</div>
-                  </div>
-                  <div class="item-after">
-                    <span class="badge">${map[i].size}</span>
-                  </div>
+  loadMapList() {
+    $$("#map-list").empty();
+    app.request({
+      url: "maps.json",
+      method: "GET",
+      dataType: "json",
+      // cache: false,
+      success: function (maps) {
+        maps.sort(function(a, b) {
+          return (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0;
+        });
+        
+        app.maps = maps;
+        
+        for (const map of maps) {
+          const li = `<li>
+            <a href="#" class="item-link item-content" onclick="app.activeLayer = '${map.name}'; app.views.main.router.navigate('/map/');">
+              <div class="item-inner">
+                <div class="item-title">
+                  ${map.name}
+                  <div class="item-footer">${map.description}</div>
                 </div>
-              </a>
-            </li>`;
-            $$("#map-list").append(li);
-            if (app.utils.parseUrlQuery(document.URL).map && (map[i].name == app.utils.parseUrlQuery(document.URL).map)) {
-              app.functions.saveMap(map[i]);
-              window.history.replaceState(null, null, window.location.pathname);
+              </div>
+            </a>
+          </li>`;
+          
+          $$("#map-list").append(li);
+          if (app.utils.parseUrlQuery(document.URL).map && (map.name == app.utils.parseUrlQuery(document.URL).map)) {
+            app.activeLayer = map.name;
+            window.history.replaceState(null, null, window.location.pathname);
+            app.views.main.router.navigate("/map/");
+          }
+        }
+
+        if (app.views.current.router.currentRoute.url == "/map/") {
+          if (sessionStorage.getItem("settings")) {
+            // $$("#gps-btn").removeClass("disabled");
+            app.geolocation.setTracking(true);
+            const settings = JSON.parse(sessionStorage.getItem("settings"));
+            if (app.activeLayer) {
+              app.functions.setMap(app.activeLayer);
+            } else {
+              app.functions.setMap(settings.activeLayer, settings); 
+            }
+            if (settings.basemap) {
+              $$("input[type=radio][name=basemap][value='" + settings.basemap + "']").prop("checked", true).trigger("change");
             }
           }
-          app.ptr.done();
-        },
-        error: function (xhr, status) {
-          app.dialog.alert(xhr.statusText, "Map List Error");
-          app.ptr.done();
+          else {
+            app.preloader.hide();
+            app.views.current.router.back();
+          }
         }
-      });
-    } else {
-      app.ptr.done();
-    }
+
+        app.ptr.done();
+      },
+      error: function (xhr, status) {
+        app.dialog.alert(xhr.statusText, "Map List Error");
+        app.ptr.done();
+      }
+    });
   },
 
-  setMap: function(key, settings) {
+  setMap: function(name, settings) {
     // app.progressbar.show("white");
     $$("#rotate-btn").css("display", "none");
-    app.mapStore.getItem(key).then(function(value) {
-      $$("#map-title").html(value.name);
-      var blob = new Blob([value.image]);
 
-      proj4.defs(value.projection[0],value.projection[1]);
-      ol.proj.proj4.register(proj4);
+    for (const value of app.maps) {
+      if (name == value.name) {
+        $$("#map-title").html(value.name);
+        $$("#info-link").attr("href", (value.link ? value.link : "#"));
+        app.directions = value.directions ? value.directions : null;
 
-      app.layers.image.setSource(
-        new ol.source.ImageStatic({
-          url: window.URL.createObjectURL(blob),
-          projection: value.projection[0],
-          imageExtent: value.extent,
-          attributions: value.attribution.replace("<a", "<a class='external'")
-        })
-      );
+        proj4.defs(value.projection[0],value.projection[1]);
+        ol.proj.proj4.register(proj4);
 
-      app.layers.image.setExtent(value.extent);
-
-      app.map.setView(
-        new ol.View({
-          projection: value.projection[0]/*,
-          extent: value.extent*/
-        })
-      );
-
-      app.map.getView().fit(value.extent, {
-        constrainResolution: false
-      });
-
-      app.map.getView().on("change:rotation", function(evt) {
-        var radians = evt.target.getRotation();
-        var degrees = radians * 180 / Math.PI;
-        $$("#rotate-icon").css("transform", "translate(-12px, -12px) rotate("+degrees+"deg)");
-        if (radians == 0) {
-          $$("#rotate-btn").css("display", "none");
-        } else {
-          $$("#rotate-btn").css("display", "block");
-        }
-      });
-
-      app.geolocation.setProjection(app.map.getView().getProjection());
-
-      if (settings && settings.opacity) {
-        app.layers.image.setOpacity(settings.opacity);
-      }
-
-      if (settings && settings.state) {
-        app.map.getView().setCenter(settings.state.center);
-        app.map.getView().setZoom(settings.state.zoom);
-        app.map.getView().setRotation(settings.state.rotation);
-      } else {
+        app.layers.image.setSource(
+          new ol.source.ImageStatic({
+            url: value.url,
+            projection: value.projection[0],
+            imageExtent: value.extent,
+            attributions: value.attribution ? value.attribution.replace("<a", "<a class='external'") : null
+          })
+        );
+  
+        app.layers.image.setExtent(value.extent);
+  
+        app.map.setView(
+          new ol.View({
+            projection: value.projection[0]/*,
+            extent: value.extent*/
+          })
+        );
+  
         app.map.getView().fit(value.extent, {
           constrainResolution: false
         });
-      }
-
-      app.layers.image.setVisible(true);
-      app.map.updateSize();
-      // app.progressbar.hide();
-      app.preloader.hide();
-
-      sessionStorage.setItem("settings", JSON.stringify({
-        activeLayer: key,
-        basemap: ($$("input[name='basemap']:checked").val() != "none") ? $$("input[name='basemap']:checked").val() : null,
-        opacity: app.layers.image.getOpacity(),
-        state: app.map.getView().getState()
-      }));
-    }).catch(function(err) {
-      app.preloader.hide();
-      app.dialog.alert(err, "Map load error");
-    });
-  },
-
-  loadSavedMaps: function() {
-    $$("#device-list").empty();
-    var totalStorage = 0;
-    var maps = [];
-    app.mapStore.iterate(function(value, key, iterationNumber) {
-      totalStorage += value.image.byteLength;
-      var size = app.functions.calculateStorage(value.image.byteLength);
-      value.key = key;
-      value.size = size;
-      maps.push(value);
-    }).then(function() {
-      maps.sort(function(a, b) {
-        return a.order - b.order;
-      });
-      for (var i = 0; i < maps.length; i++) {
-        var li = `<li class="saved-map">
-          <a href="#" class="item-link item-content no-chevron" name="map" data-key="${maps[i].key}" onclick="app.activeLayer = ${maps[i].key}; app.router.navigate('/map/');">
-            <div class="item-inner">
-              <div class="item-title">
-                ${maps[i].name}
-                <div class="item-footer">${maps[i].description}</div>
-              </div>
-              <div class="item-after">
-                <span class="badge color-blue">${maps[i].size}</span>
-              </div>
-            </div>
-          </a>
-          <div class="sortable-handler"></div>
-        </li>`;
-        $$("#device-list").append(li);
-      }
-      if (maps.length > 0) {
-        $$("#total-storage").html(app.functions.calculateStorage(totalStorage));
-        app.tab.show("#device-view");
-      } else {
-        $$("#total-storage").html("0");
-        $$("#device-list").append(`<li>
-          <a href="#" class="item-link item-content no-chevron" onclick="app.tab.show('#list-view');">
-            <div class="item-media">
-              <i class="icon material-icons">add</i>
-            </div>
-            <div class="item-inner">
-              <div class="item-title">Save a map to your device</div>
-            </div>
-          </a>
-        </li>`);
-      }
-    }).catch(function(err) {
-      app.dialog.alert("Error loading saved maps!", "Load error");
-    });
-  },
-
-  saveMap: function(config) {
-    if (navigator.onLine) {
-      app.dialog.confirm("Save <b>" + config.name + "</b> map to your device?", null, function() {
-        app.dialog.progress("Downloading map...");
   
-        app.request({
-          url: config.url,
-          method: "GET",
-          cache: false,
-          xhrFields: {
-            responseType: "arraybuffer"
-          },
-          success: function (image) {
-            var key = new Date().getTime().toString();
-            var value = {
-              "order": $$("#device-list li").length,
-              "name": config.name,
-              "description": config.description,
-              "attribution": config.attribution,
-              "projection": config.projection,
-              "extent": config.extent,
-              "image": image
-            };
-            app.mapStore.setItem(key, value).then(function (value) {
-              app.dialog.close();
-              app.toast.create({
-                text: "Map saved!",
-                closeTimeout: 2000,
-                closeButton: true
-              }).open();
-              app.functions.loadSavedMaps();
-            }).catch(function(err) {
-              app.dialog.alert("Error saving map!", "Save error");
-            });
+        app.map.getView().on("change:rotation", function(evt) {
+          const radians = evt.target.getRotation();
+          const degrees = radians * 180 / Math.PI;
+          $$("#rotate-icon").css("transform", "translate(-12px, -12px) rotate("+degrees+"deg)");
+          if (radians == 0) {
+            $$("#rotate-btn").css("display", "none");
+          } else {
+            $$("#rotate-btn").css("display", "block");
           }
         });
-      });
-    } else {
-      app.dialog.alert("Network connection required to save map!", "Save error");
-    }
-  },
+  
+        app.geolocation.setProjection(app.map.getView().getProjection());
+  
+        if (settings && settings.opacity) {
+          app.layers.image.setOpacity(settings.opacity);
+        }
+  
+        if (settings && settings.state) {
+          app.map.getView().setCenter(settings.state.center);
+          app.map.getView().setZoom(settings.state.zoom);
+          app.map.getView().setRotation(settings.state.rotation);
+        } else {
+          app.map.getView().fit(value.extent, {
+            constrainResolution: false
+          });
+        }
+  
+        app.layers.image.setVisible(true);
+        app.map.updateSize();
+        // app.progressbar.hide();
+        app.preloader.hide();
+  
+        sessionStorage.setItem("settings", JSON.stringify({
+          activeLayer: value.name,
+          basemap: ($$("input[name='basemap']:checked").val() != "none") ? $$("input[name='basemap']:checked").val() : null,
+          opacity: app.layers.image.getOpacity(),
+          state: app.map.getView().getState()
+        }));
 
-  deleteMap: function(key) {
-    app.dialog.confirm("Are you sure you want to remove this map from your device?", null, function() {
-      sessionStorage.removeItem("settings");
-      app.mapStore.removeItem(key).then(function () {
-        app.functions.loadSavedMaps();
-      });
-    });
-  },
-
-  deleteAllMaps: function(){
-    app.dialog.confirm("Are you sure you want to remove all saved maps from your device?", null, function() {
-      sessionStorage.removeItem("settings");
-      localStorage.removeItem("dismissPrompt");
-      app.mapStore.clear().then(function() {
-        app.functions.loadSavedMaps();
-      });
-    });
-  },
-
-  setMapConfig() {
-    app.dialog.create({
-      title: "Maps source",
-      content: '<div class="dialog-input-field item-input"><div class="item-input-wrap"><input id="maps-url" type="text" class="dialog-input" onClick="this.select();"></div></div>',
-      closeByBackdropClick: true,
-      buttons: [{
-          text: "Reset",
-          onClick: function(dialog, e) {
-            localStorage.setItem("mapConfig", "maps.json");
-            app.functions.loadAvailableMaps();
-          }
-        }, {
-          text: "OK",
-          bold: true,
-          onClick: function(dialog, e) {
-            url = $$("#maps-url").val();
-            if (url) {
-              localStorage.setItem("mapConfig", url);
-            } else {
-              localStorage.removeItem("mapConfig");
+        app.range.create({
+          el: ".range-slider",
+          min: 0,
+          max: 100,
+          step: 1,
+          value: app.layers.image.getOpacity() * 100,
+          on: {
+            change: function (e) {
+              const opacity = e.value / 100;
+              app.layers.image.setOpacity(opacity);
+              app.map.render();
+              const settings = JSON.parse(sessionStorage.getItem("settings"));
+              settings.opacity = opacity;
+              sessionStorage.setItem("settings", JSON.stringify(settings));
             }
-            app.functions.loadAvailableMaps();
           }
-        }
-      ],
-      on: {
-        opened: function() {
-          if (localStorage.getItem("mapConfig")) {
-            $$("#maps-url").val(localStorage.getItem("mapConfig"));
-          } else {
-            $$("#maps-url").val("maps.json");
-          }
-        }
+        });
       }
-    }).open();
+    }
   }
 }
 
-app.once("popoverOpen", function (e) {
-  var range = app.range.create({
-    el: ".range-slider",
-    min: 0,
-    max: 100,
-    step: 1,
-    value: app.layers.image.getOpacity() * 100,
-    on: {
-      change: function (e) {
-        var opacity = e.value / 100;
-        app.layers.image.setOpacity(opacity);
-        app.map.render();
-        var settings = JSON.parse(sessionStorage.getItem("settings"));
-        settings.opacity = opacity;
-        sessionStorage.setItem("settings", JSON.stringify(settings));
-      }
-    }
-  });
-});
-
 app.map.on("moveend", function(evt) {
-  var settings = JSON.parse(sessionStorage.getItem("settings"));
+  const settings = JSON.parse(sessionStorage.getItem("settings"));
   settings.state = app.map.getView().getState(window.devicePixelRatio);
   sessionStorage.setItem("settings", JSON.stringify(settings));
 });
 
-app.geolocation.on("error", function(error) {
+app.geolocation.once("error", function(error) {
   app.dialog.alert(error.message, "Geolocation error");
   $$("#gps-icon").html("gps_not_fixed");
   $$("#gps-btn").addClass("disabled");
 });
 
 app.geolocation.on("change:position", function() {
+  $$("#gps-btn").removeClass("disabled");
   $$("#gps-icon").html("gps_fixed");
-  var coordinates = app.geolocation.getPosition();
-  var heading = app.geolocation.getHeading() || 0;
-  var speed = app.geolocation.getSpeed() || 0;
+  const coordinates = app.geolocation.getPosition();
   app.layers.position.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
 });
 
 $$("input[type=radio][name=basemap]").change(function() {
-  var settings = JSON.parse(sessionStorage.getItem("settings"));
-  for (var key in app.layers.basemaps) {
+  const settings = JSON.parse(sessionStorage.getItem("settings"));
+  for (const key in app.layers.basemaps) {
     if (key == this.value && key != "none") {
       app.map.addLayer(app.layers.basemaps[key]);
       settings.basemap = key;
@@ -653,51 +502,13 @@ $$("input[type=radio][name=basemap]").change(function() {
   sessionStorage.setItem("settings", JSON.stringify(settings));
 });
 
-$$(document).on("contextmenu", "label, a", function(e){
-  e.preventDefault();
-});
-
-$$(document).on("taphold", ".saved-map", function(e) {
-  var id = $$(this).find("[name=map]").attr("data-key");
-  app.actions.create({
-    buttons: [{
-        text: "Remove map from device?",
-        color: "red",
-        onClick: function() {
-          app.functions.deleteMap(id);
-        }
-      }, {
-        text: "Cancel",
-        color: "blue"
-      }
-    ]
-  }).open();
-  return false;
-});
-
 $$(".ptr-content").on("ptr:refresh", function (e) {
-  app.functions.loadAvailableMaps();
+  app.functions.loadMapList();
 });
 
 app.on("init", function() {
   app.functions.iosChecks();
-  app.functions.loadSavedMaps();
-  app.functions.loadAvailableMaps();
-  if (app.views.current.router.currentRoute.url == "/map/") {
-    if (sessionStorage.getItem("settings")) {
-      $$("#gps-btn").removeClass("disabled");
-      app.geolocation.setTracking(true);
-      var settings = JSON.parse(sessionStorage.getItem("settings"));
-      app.functions.setMap(settings.activeLayer, settings);
-      if (settings.basemap) {
-        $$("input[type=radio][name=basemap][value='" + settings.basemap + "']").prop("checked", true).trigger("change");
-      }
-    }
-    else {
-      app.preloader.hide();
-      app.views.current.router.back();
-    }
-  }
+  app.functions.loadMapList();
 })
 
 app.init();
