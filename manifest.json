@@ -12,6 +12,10 @@
       "src": "assets/img/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
+    }, {
+      "src": "assets/img/mhlc-logo.png",
+      "sizes": "512x382",
+      "type": "image/png"
     }
   ]
 }
