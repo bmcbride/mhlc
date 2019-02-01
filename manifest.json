@@ -3,7 +3,7 @@
   "short_name": "MoHud Maps",
   "description": "Your favorite Mohawk Hudson Land Conservancy maps saved to your mobile device for offline viewing and navigation!",
   "start_url": "index.html",
-  "scope": "/",
+  "scope": ".",
   "display": "standalone",
   "background_color":  "#2196f3",
   "theme_color": "#2196f3",
