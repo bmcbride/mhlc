@@ -358,12 +358,9 @@ app.functions = {
             app.views.current.router.back();
           }
         }
-
-        app.ptr.done();
       },
       error: function (xhr, status) {
         app.dialog.alert(xhr.statusText, "Map List Error");
-        app.ptr.done();
       }
     });
   },
@@ -497,10 +494,6 @@ $$("input[type=radio][name=basemap]").change(function() {
     settings.basemap = null;
   }
   sessionStorage.setItem("settings", JSON.stringify(settings));
-});
-
-$$(".ptr-content").on("ptr:refresh", function (e) {
-  app.functions.loadMapList();
 });
 
 app.on("init", function() {
