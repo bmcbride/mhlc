@@ -75,10 +75,12 @@
   opacity: 1;
 }
 
-.ol-attribution {
+.ol-attribution.ol-uncollapsible {
   max-width: calc(100%);
   white-space: nowrap;
   width: fit-content;
+  left: 0px;
+  border-radius: 0px 4px 0px;
 }
 
 .list {
