@@ -1,6 +1,6 @@
 $$ = Dom7;
 
-const app = new Framework7({
+var app = new Framework7({
   root: "#app",
   theme: "md",
   init: false,
