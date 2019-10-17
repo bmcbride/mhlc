@@ -1,4 +1,4 @@
-$$ = Dom7;
+var $$ = Dom7;
 
 var app = new Framework7({
   root: "#app",
