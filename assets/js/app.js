@@ -45,7 +45,6 @@ var app = new Framework7({
 });
 
 app.layers = {
-  position: new ol.Feature(),
   image: new ol.layer.Image({
     zIndex: 10
   }),
@@ -91,6 +90,18 @@ app.layers = {
       }
     }
   }),
+  position: new ol.layer.Vector({
+    zIndex: 15,
+    source: new ol.source.Vector({
+      features: [new ol.Feature()]
+    }),
+    style: new ol.style.Style({
+      image: new ol.style.Icon({
+        rotateWithView: true,
+        src: "assets/img/geolocation_marker.png"
+      })
+    })
+  }),
   basemaps: {
     osm: new ol.layer.Tile({
       source: new ol.source.XYZ({
@@ -118,6 +129,9 @@ app.layers = {
     })
   }
 };
+
+app.kompas = new kompas();
+app.kompas.watch();
 
 app.geolocation = new ol.Geolocation({
   trackingOptions: {
@@ -199,24 +213,7 @@ app.map = new ol.Map({
   layers: [
     app.layers.image,
     app.layers.measure,
-    new ol.layer.Vector({
-      zIndex: 15,
-      source: new ol.source.Vector({
-        features: [app.layers.position]
-      }),
-      style: new ol.style.Style({
-        image: new ol.style.Circle({
-          radius: 8,
-          fill: new ol.style.Fill({
-            color: "#3a84df"
-          }),
-          stroke: new ol.style.Stroke({
-            color: "#fff",
-            width: 1.5
-          })
-        })
-      })
-    })
+    app.layers.position
   ]
 });
 
@@ -467,6 +464,26 @@ app.map.on("moveend", function(evt) {
   sessionStorage.setItem("settings", JSON.stringify(settings));
 });
 
+app.kompas.on("heading", function(heading) {
+  let style = new ol.style.Style({
+    image: new ol.style.Icon({
+      rotation: 0,
+      rotateWithView: true,
+      src: "assets/img/geolocation_marker.png"
+    })
+  });
+  if (heading) {
+    style = new ol.style.Style({
+      image: new ol.style.Icon({
+        rotation: (Math.PI / 180 * heading),
+        rotateWithView: true,
+        src: "assets/img/geolocation_marker_heading.png"
+      })
+    });
+  }
+  app.layers.position.setStyle(style);
+});
+
 app.geolocation.once("error", function(error) {
   app.dialog.alert(error.message, "Geolocation error");
   $$("#gps-icon").html("gps_not_fixed");
@@ -477,7 +494,7 @@ app.geolocation.on("change:position", function() {
   $$("#gps-btn").removeClass("disabled");
   $$("#gps-icon").html("gps_fixed");
   const coordinates = app.geolocation.getPosition();
-  app.layers.position.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+  app.layers.position.getSource().getFeatures()[0].setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
 });
 
 $$("input[type=radio][name=basemap]").change(function() {

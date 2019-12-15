@@ -15,7 +15,7 @@
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
 // in turn trigger the install event again.
-const PRECACHE = 'precache-12.02.19.1';
+const PRECACHE = 'precache-12.15.19.1';
 const RUNTIME = 'runtime';
 
 // A list of local resources we always want to be cached.
@@ -39,6 +39,7 @@ const PRECACHE_URLS = [
   'assets/vendor/framework7-5.1.3/js/framework7.bundle.min.js',
   'assets/vendor/openlayers-6.1.1/ol.js',
   'assets/vendor/proj4js-2.5.0/proj4.js',
+  'assets/vendor/kompas-0.0.1/kompas.js',
   'assets/js/app.js',
   'maps/2018-Wolf-Creek-Falls-Preserve-Map.jpg',
   'maps/AlbCo_RailTrail.jpg',
