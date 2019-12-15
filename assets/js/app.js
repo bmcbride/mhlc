@@ -112,7 +112,7 @@ app.layers = {
     nysdop: new ol.layer.Tile({
       source: new ol.source.TileWMS({
         url: "https://orthos.dhses.ny.gov/ArcGIS/services/Latest/MapServer/WMSServer",
-        attributions: "<a href='https://gis.ny.gov/gateway/mg/webserv/webserv.html' class='external'>NYSDOP</a>",
+        attributions: "<a href='http://orthos.dhses.ny.gov/arcgis/rest/' class='external'>NYS</a>",
         params: {
           "LAYERS": "0,1,2,3,4",
           "TILED": true
