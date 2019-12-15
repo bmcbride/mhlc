@@ -1,5 +1,5 @@
 /**
- * Framework7 5.1.3
+ * Framework7 5.2.0
  * Full featured mobile HTML framework for building iOS & Android apps
  * http://framework7.io/
  *
@@ -7,7 +7,7 @@
  *
  * Released under the MIT License
  *
- * Released on: November 17, 2019
+ * Released on: December 8, 2019
  */
 
 (function (global, factory) {
@@ -3246,6 +3246,7 @@
       {
         open: function open(el, animate) {
           var $el = $(el);
+          if (!$el.length) { return undefined; }
           var instance = $el[0].f7Modal;
           if (!instance) { instance = new constructor(app, { el: $el }); }
           return instance.open(animate);
@@ -3254,7 +3255,7 @@
           if ( el === void 0 ) el = defaultSelector;
 
           var $el = $(el);
-          if ($el.length === 0) { return undefined; }
+          if (!$el.length) { return undefined; }
           var instance = $el[0].f7Modal;
           if (!instance) { instance = new constructor(app, { el: $el }); }
           return instance.close(animate);
@@ -3690,122 +3691,6 @@
     return Promise.all(modules.map(function (module) { return Framework7.loadModule(module); }));
   };
 
-  var DeviceModule = {
-    name: 'device',
-    proto: {
-      device: Device,
-    },
-    static: {
-      device: Device,
-    },
-    on: {
-      init: function init() {
-        var classNames = [];
-        var html = doc.querySelector('html');
-        var metaStatusbar = doc.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
-        if (!html) { return; }
-        if (Device.standalone && Device.ios && metaStatusbar && metaStatusbar.content === 'black-translucent') {
-          classNames.push('device-full-viewport');
-        }
-
-        // Pixel Ratio
-        classNames.push(("device-pixel-ratio-" + (Math.floor(Device.pixelRatio))));
-        // OS classes
-        if (Device.os && !Device.desktop) {
-          classNames.push(
-            ("device-" + (Device.os))
-          );
-        } else if (Device.desktop) {
-          classNames.push('device-desktop');
-          if (Device.os) {
-            classNames.push(("device-" + (Device.os)));
-          }
-        }
-        if (Device.cordova || Device.phonegap) {
-          classNames.push('device-cordova');
-        }
-
-        // Add html classes
-        classNames.forEach(function (className) {
-          html.classList.add(className);
-        });
-      },
-    },
-  };
-
-  var SupportModule = {
-    name: 'support',
-    proto: {
-      support: Support,
-    },
-    static: {
-      support: Support,
-    },
-  };
-
-  var UtilsModule = {
-    name: 'utils',
-    proto: {
-      utils: Utils,
-    },
-    static: {
-      utils: Utils,
-    },
-  };
-
-  var ResizeModule = {
-    name: 'resize',
-    instance: {
-      getSize: function getSize() {
-        var app = this;
-        if (!app.root[0]) { return { width: 0, height: 0, left: 0, top: 0 }; }
-        var offset = app.root.offset();
-        var ref = [app.root[0].offsetWidth, app.root[0].offsetHeight, offset.left, offset.top];
-        var width = ref[0];
-        var height = ref[1];
-        var left = ref[2];
-        var top = ref[3];
-        app.width = width;
-        app.height = height;
-        app.left = left;
-        app.top = top;
-        return { width: width, height: height, left: left, top: top };
-      },
-    },
-    on: {
-      init: function init() {
-        var app = this;
-
-        // Get Size
-        app.getSize();
-
-        // Emit resize
-        win.addEventListener('resize', function () {
-          app.emit('resize');
-        }, false);
-
-        // Emit orientationchange
-        win.addEventListener('orientationchange', function () {
-          app.emit('orientationchange');
-        });
-      },
-      orientationchange: function orientationchange() {
-        var app = this;
-        // Fix iPad weird body scroll
-        if (app.device.ipad) {
-          doc.body.scrollLeft = 0;
-          setTimeout(function () {
-            doc.body.scrollLeft = 0;
-          }, 0);
-        }
-      },
-      resize: function resize() {
-        var app = this;
-        app.getSize();
-      },
-    },
-  };
-
   var globals = {};
   var jsonpRequests = 0;
 
@@ -4228,6 +4113,122 @@
       Utils.extend(options, { method: options.type });
     }
     Utils.extend(globals, options);
+  };
+
+  var DeviceModule = {
+    name: 'device',
+    proto: {
+      device: Device,
+    },
+    static: {
+      device: Device,
+    },
+    on: {
+      init: function init() {
+        var classNames = [];
+        var html = doc.querySelector('html');
+        var metaStatusbar = doc.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+        if (!html) { return; }
+        if (Device.standalone && Device.ios && metaStatusbar && metaStatusbar.content === 'black-translucent') {
+          classNames.push('device-full-viewport');
+        }
+
+        // Pixel Ratio
+        classNames.push(("device-pixel-ratio-" + (Math.floor(Device.pixelRatio))));
+        // OS classes
+        if (Device.os && !Device.desktop) {
+          classNames.push(
+            ("device-" + (Device.os))
+          );
+        } else if (Device.desktop) {
+          classNames.push('device-desktop');
+          if (Device.os) {
+            classNames.push(("device-" + (Device.os)));
+          }
+        }
+        if (Device.cordova || Device.phonegap) {
+          classNames.push('device-cordova');
+        }
+
+        // Add html classes
+        classNames.forEach(function (className) {
+          html.classList.add(className);
+        });
+      },
+    },
+  };
+
+  var SupportModule = {
+    name: 'support',
+    proto: {
+      support: Support,
+    },
+    static: {
+      support: Support,
+    },
+  };
+
+  var UtilsModule = {
+    name: 'utils',
+    proto: {
+      utils: Utils,
+    },
+    static: {
+      utils: Utils,
+    },
+  };
+
+  var ResizeModule = {
+    name: 'resize',
+    instance: {
+      getSize: function getSize() {
+        var app = this;
+        if (!app.root[0]) { return { width: 0, height: 0, left: 0, top: 0 }; }
+        var offset = app.root.offset();
+        var ref = [app.root[0].offsetWidth, app.root[0].offsetHeight, offset.left, offset.top];
+        var width = ref[0];
+        var height = ref[1];
+        var left = ref[2];
+        var top = ref[3];
+        app.width = width;
+        app.height = height;
+        app.left = left;
+        app.top = top;
+        return { width: width, height: height, left: left, top: top };
+      },
+    },
+    on: {
+      init: function init() {
+        var app = this;
+
+        // Get Size
+        app.getSize();
+
+        // Emit resize
+        win.addEventListener('resize', function () {
+          app.emit('resize');
+        }, false);
+
+        // Emit orientationchange
+        win.addEventListener('orientationchange', function () {
+          app.emit('orientationchange');
+        });
+      },
+      orientationchange: function orientationchange() {
+        var app = this;
+        // Fix iPad weird body scroll
+        if (app.device.ipad) {
+          doc.body.scrollLeft = 0;
+          setTimeout(function () {
+            doc.body.scrollLeft = 0;
+          }, 0);
+        }
+      },
+      resize: function resize() {
+        var app = this;
+        app.getSize();
+      },
+    },
   };
 
   /* eslint no-param-reassign: "off" */
@@ -4674,11 +4675,11 @@
         tapHoldPreventClicks: true,
         // Active State
         activeState: true,
-        activeStateElements: 'a, button, label, span, .actions-button, .stepper-button, .stepper-button-plus, .stepper-button-minus, .card-expandable, .menu-item, .link, .item-link',
+        activeStateElements: 'a, button, label, span, .actions-button, .stepper-button, .stepper-button-plus, .stepper-button-minus, .card-expandable, .menu-item, .link, .item-link, .accordion-item-toggle',
         mdTouchRipple: true,
         iosTouchRipple: false,
         auroraTouchRipple: false,
-        touchRippleElements: '.ripple, .link, .item-link, .list-button, .links-list a, .button, button, .input-clear-button, .dialog-button, .tab-link, .item-radio, .item-checkbox, .actions-button, .searchbar-disable-button, .fab a, .checkbox, .radio, .data-table .sortable-cell:not(.input-cell), .notification-close-button, .stepper-button, .stepper-button-minus, .stepper-button-plus, .menu-item-content',
+        touchRippleElements: '.ripple, .link, .item-link, .list-button, .links-list a, .button, button, .input-clear-button, .dialog-button, .tab-link, .item-radio, .item-checkbox, .actions-button, .searchbar-disable-button, .fab a, .checkbox, .radio, .data-table .sortable-cell:not(.input-cell), .notification-close-button, .stepper-button, .stepper-button-minus, .stepper-button-plus, .menu-item-content, .list.accordion-list .accordion-item-toggle',
       },
     },
     instance: {
@@ -4694,60 +4695,34 @@
   };
 
   /**
-   * Default configs.
+   * Tokenize input string.
    */
-  var DEFAULT_DELIMITER = "/";
-  /**
-   * Balanced bracket helper function.
-   */
-  function balanced(open, close, str, index) {
-      var count = 0;
-      var i = index;
-      while (i < str.length) {
-          if (str[i] === "\\") {
-              i += 2;
-              continue;
-          }
-          if (str[i] === close) {
-              count--;
-              if (count === 0)
-                  { return i + 1; }
-          }
-          if (str[i] === open) {
-              count++;
-          }
-          i++;
-      }
-      return -1;
-  }
-  /**
-   * Parse a string for the raw tokens.
-   */
-  function parse(str, options) {
-      if (options === void 0) { options = {}; }
-      var _a, _b;
+  function lexer(str) {
       var tokens = [];
-      var defaultDelimiter = (_a = options.delimiter, (_a !== null && _a !== void 0 ? _a : DEFAULT_DELIMITER));
-      var whitelist = (_b = options.whitelist, (_b !== null && _b !== void 0 ? _b : undefined));
       var i = 0;
-      var key = 0;
-      var path = "";
-      var isEscaped = false;
-      // tslint:disable-next-line
       while (i < str.length) {
-          var prefix = "";
-          var name = "";
-          var pattern = "";
-          // Ignore escaped sequences.
-          if (str[i] === "\\") {
-              i++;
-              path += str[i++];
-              isEscaped = true;
+          var char = str[i];
+          if (char === "*" || char === "+" || char === "?") {
+              tokens.push({ type: "MODIFIER", index: i, value: str[i++] });
               continue;
           }
-          if (str[i] === ":") {
-              while (++i < str.length) {
-                  var code = str.charCodeAt(i);
+          if (char === "\\") {
+              tokens.push({ type: "ESCAPED_CHAR", index: i++, value: str[i++] });
+              continue;
+          }
+          if (char === "{") {
+              tokens.push({ type: "OPEN", index: i, value: str[i++] });
+              continue;
+          }
+          if (char === "}") {
+              tokens.push({ type: "CLOSE", index: i, value: str[i++] });
+              continue;
+          }
+          if (char === ":") {
+              var name = "";
+              var j = i + 1;
+              while (j < str.length) {
+                  var code = str.charCodeAt(j);
                   if (
                   // `0-9`
                   (code >= 48 && code <= 57) ||
@@ -4757,71 +4732,140 @@
                       (code >= 97 && code <= 122) ||
                       // `_`
                       code === 95) {
-                      name += str[i];
+                      name += str[j++];
                       continue;
                   }
                   break;
               }
-              // False positive on param name.
               if (!name)
-                  { i--; }
-          }
-          if (str[i] === "(") {
-              var end = balanced("(", ")", str, i);
-              // False positive on matching brackets.
-              if (end > -1) {
-                  pattern = str.slice(i + 1, end - 1);
-                  i = end;
-                  if (pattern[0] === "?") {
-                      throw new TypeError("Path pattern must be a capturing group");
-                  }
-                  if (/\((?=[^?])/.test(pattern)) {
-                      var validPattern = pattern.replace(/\((?=[^?])/, "(?:");
-                      throw new TypeError("Capturing groups are not allowed in pattern, use a non-capturing group: (" + validPattern + ")");
-                  }
-              }
-          }
-          // Add regular characters to the path string.
-          if (name === "" && pattern === "") {
-              path += str[i++];
-              isEscaped = false;
+                  { throw new TypeError("Missing parameter name at " + i); }
+              tokens.push({ type: "NAME", index: i, value: name });
+              i = j;
               continue;
           }
-          // Extract the final character from `path` for the prefix.
-          if (path.length && !isEscaped) {
-              var char = path[path.length - 1];
-              var matches = whitelist ? whitelist.indexOf(char) > -1 : true;
-              if (matches) {
-                  prefix = char;
-                  path = path.slice(0, -1);
+          if (char === "(") {
+              var count = 1;
+              var pattern = "";
+              var j = i + 1;
+              if (str[j] === "?") {
+                  throw new TypeError("Pattern cannot start with \"?\" at " + j);
               }
+              while (j < str.length) {
+                  if (str[j] === "\\") {
+                      pattern += str[j++] + str[j++];
+                      continue;
+                  }
+                  if (str[j] === ")") {
+                      count--;
+                      if (count === 0) {
+                          j++;
+                          break;
+                      }
+                  }
+                  else if (str[j] === "(") {
+                      count++;
+                      if (str[j + 1] !== "?") {
+                          throw new TypeError("Capturing groups are not allowed at " + j);
+                      }
+                  }
+                  pattern += str[j++];
+              }
+              if (count)
+                  { throw new TypeError("Unbalanced pattern at " + i); }
+              if (!pattern)
+                  { throw new TypeError("Missing pattern at " + i); }
+              tokens.push({ type: "PATTERN", index: i, value: pattern });
+              i = j;
+              continue;
           }
-          // Push the current path onto the list of tokens.
-          if (path.length) {
-              tokens.push(path);
+          tokens.push({ type: "CHAR", index: i, value: str[i++] });
+      }
+      tokens.push({ type: "END", index: i, value: "" });
+      return tokens;
+  }
+  /**
+   * Parse a string for the raw tokens.
+   */
+  function parse(str, options) {
+      if (options === void 0) { options = {}; }
+      var tokens = lexer(str);
+      var _a = options.prefixes, prefixes = _a === void 0 ? "./" : _a;
+      var defaultPattern = "[^" + escapeString(options.delimiter || "/#?") + "]+?";
+      var result = [];
+      var key = 0;
+      var i = 0;
+      var path = "";
+      var tryConsume = function (type) {
+          if (i < tokens.length && tokens[i].type === type)
+              { return tokens[i++].value; }
+      };
+      var mustConsume = function (type) {
+          var value = tryConsume(type);
+          if (value !== undefined)
+              { return value; }
+          var _a = tokens[i], nextType = _a.type, index = _a.index;
+          throw new TypeError("Unexpected " + nextType + " at " + index + ", expected " + type);
+      };
+      var consumeText = function () {
+          var result = "";
+          var value;
+          // tslint:disable-next-line
+          while ((value = tryConsume("CHAR") || tryConsume("ESCAPED_CHAR"))) {
+              result += value;
+          }
+          return result;
+      };
+      while (i < tokens.length) {
+          var char = tryConsume("CHAR");
+          var name = tryConsume("NAME");
+          var pattern = tryConsume("PATTERN");
+          if (name || pattern) {
+              var prefix = char || "";
+              if (prefixes.indexOf(prefix) === -1) {
+                  path += prefix;
+                  prefix = "";
+              }
+              if (path) {
+                  result.push(path);
+                  path = "";
+              }
+              result.push({
+                  name: name || key++,
+                  prefix: prefix,
+                  suffix: "",
+                  pattern: pattern || defaultPattern,
+                  modifier: tryConsume("MODIFIER") || ""
+              });
+              continue;
+          }
+          var value = char || tryConsume("ESCAPED_CHAR");
+          if (value) {
+              path += value;
+              continue;
+          }
+          if (path) {
+              result.push(path);
               path = "";
           }
-          var repeat = str[i] === "+" || str[i] === "*";
-          var optional = str[i] === "?" || str[i] === "*";
-          var delimiter = prefix || defaultDelimiter;
-          // Increment `i` past modifier token.
-          if (repeat || optional)
-              { i++; }
-          tokens.push({
-              name: name || key++,
-              prefix: prefix,
-              delimiter: delimiter,
-              optional: optional,
-              repeat: repeat,
-              pattern: pattern ||
-                  "[^" + escapeString(delimiter === defaultDelimiter
-                      ? delimiter
-                      : delimiter + defaultDelimiter) + "]+?"
-          });
+          var open = tryConsume("OPEN");
+          if (open) {
+              var prefix = consumeText();
+              var name_1 = tryConsume("NAME") || "";
+              var pattern_1 = tryConsume("PATTERN") || "";
+              var suffix = consumeText();
+              mustConsume("CLOSE");
+              result.push({
+                  name: name_1 || (pattern_1 ? key++ : ""),
+                  pattern: name_1 && !pattern_1 ? defaultPattern : pattern_1,
+                  prefix: prefix,
+                  suffix: suffix,
+                  modifier: tryConsume("MODIFIER") || ""
+              });
+              continue;
+          }
+          mustConsume("END");
       }
-      if (path.length)
-          { tokens.push(path); }
-      return tokens;
+      return result;
   }
   /**
    * Compile a string to a template function for the path.
@@ -4851,12 +4895,14 @@
                   continue;
               }
               var value = data ? data[token.name] : undefined;
+              var optional = token.modifier === "?" || token.modifier === "*";
+              var repeat = token.modifier === "*" || token.modifier === "+";
               if (Array.isArray(value)) {
-                  if (!token.repeat) {
+                  if (!repeat) {
                       throw new TypeError("Expected \"" + token.name + "\" to not repeat, but got an array");
                   }
                   if (value.length === 0) {
-                      if (token.optional)
+                      if (optional)
                           { continue; }
                       throw new TypeError("Expected \"" + token.name + "\" to not be empty");
                   }
@@ -4865,7 +4911,7 @@
                       if (validate && !matches[i].test(segment)) {
                           throw new TypeError("Expected all \"" + token.name + "\" to match \"" + token.pattern + "\", but got \"" + segment + "\"");
                       }
-                      path += (j === 0 ? token.prefix : token.delimiter) + segment;
+                      path += token.prefix + segment + token.suffix;
                   }
                   continue;
               }
@@ -4874,12 +4920,12 @@
                   if (validate && !matches[i].test(segment)) {
                       throw new TypeError("Expected \"" + token.name + "\" to match \"" + token.pattern + "\", but got \"" + segment + "\"");
                   }
-                  path += token.prefix + segment;
+                  path += token.prefix + segment + token.suffix;
                   continue;
               }
-              if (token.optional)
+              if (optional)
                   { continue; }
-              var typeOfMessage = token.repeat ? "an array" : "a string";
+              var typeOfMessage = repeat ? "an array" : "a string";
               throw new TypeError("Expected \"" + token.name + "\" to be " + typeOfMessage);
           }
           return path;
@@ -4910,9 +4956,8 @@
               keys.push({
                   name: i,
                   prefix: "",
-                  delimiter: "",
-                  optional: false,
-                  repeat: false,
+                  suffix: "",
+                  modifier: "",
                   pattern: ""
               });
           }
@@ -4937,13 +4982,9 @@
    */
   function tokensToRegexp(tokens, keys, options) {
       if (options === void 0) { options = {}; }
-      var strict = options.strict, _a = options.start, start = _a === void 0 ? true : _a, _b = options.end, end = _b === void 0 ? true : _b, _c = options.delimiter, delimiter = _c === void 0 ? DEFAULT_DELIMITER : _c, _d = options.encode, encode = _d === void 0 ? function (x) { return x; } : _d;
-      var endsWith = (typeof options.endsWith === "string"
-          ? options.endsWith.split("")
-          : options.endsWith || [])
-          .map(escapeString)
-          .concat("$")
-          .join("|");
+      var _a = options.strict, strict = _a === void 0 ? false : _a, _b = options.start, start = _b === void 0 ? true : _b, _c = options.end, end = _c === void 0 ? true : _c, _d = options.encode, encode = _d === void 0 ? function (x) { return x; } : _d;
+      var endsWith = "[" + escapeString(options.endsWith || "") + "]|$";
+      var delimiter = "[" + escapeString(options.delimiter || "/#?") + "]";
       var route = start ? "^" : "";
       // Iterate over the tokens and create our regexp string.
       for (var _i = 0, tokens_1 = tokens; _i < tokens_1.length; _i++) {
@@ -4952,40 +4993,45 @@
               route += escapeString(encode(token));
           }
           else {
-              var capture = token.repeat
-                  ? "(?:" + token.pattern + ")(?:" + escapeString(token.delimiter) + "(?:" + token.pattern + "))*"
-                  : token.pattern;
-              if (keys)
-                  { keys.push(token); }
-              if (token.optional) {
-                  if (!token.prefix) {
-                      route += "(" + capture + ")?";
+              var prefix = escapeString(encode(token.prefix));
+              var suffix = escapeString(encode(token.suffix));
+              if (token.pattern) {
+                  if (keys)
+                      { keys.push(token); }
+                  if (prefix || suffix) {
+                      if (token.modifier === "+" || token.modifier === "*") {
+                          var mod = token.modifier === "*" ? "?" : "";
+                          route += "(?:" + prefix + "((?:" + token.pattern + ")(?:" + suffix + prefix + "(?:" + token.pattern + "))*)" + suffix + ")" + mod;
+                      }
+                      else {
+                          route += "(?:" + prefix + "(" + token.pattern + ")" + suffix + ")" + token.modifier;
+                      }
                   }
                   else {
-                      route += "(?:" + escapeString(token.prefix) + "(" + capture + "))?";
+                      route += "(" + token.pattern + ")" + token.modifier;
                   }
               }
               else {
-                  route += escapeString(token.prefix) + "(" + capture + ")";
+                  route += "(?:" + prefix + suffix + ")" + token.modifier;
               }
           }
       }
       if (end) {
           if (!strict)
-              { route += "(?:" + escapeString(delimiter) + ")?"; }
-          route += endsWith === "$" ? "$" : "(?=" + endsWith + ")";
+              { route += delimiter + "?"; }
+          route += !options.endsWith ? "$" : "(?=" + endsWith + ")";
       }
       else {
           var endToken = tokens[tokens.length - 1];
           var isEndDelimited = typeof endToken === "string"
-              ? endToken[endToken.length - 1] === delimiter
+              ? delimiter.indexOf(endToken[endToken.length - 1]) > -1
               : // tslint:disable-next-line
                   endToken === undefined;
           if (!strict) {
-              route += "(?:" + escapeString(delimiter) + "(?=" + endsWith + "))?";
+              route += "(?:" + delimiter + "(?=" + endsWith + "))?";
           }
           if (!isEndDelimited) {
-              route += "(?=" + escapeString(delimiter) + "|" + endsWith + ")";
+              route += "(?=" + delimiter + "|" + endsWith + ")";
           }
       }
       return new RegExp(route, flags(options));
@@ -4998,12 +5044,10 @@
    * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
    */
   function pathToRegexp(path, keys, options) {
-      if (path instanceof RegExp) {
-          return regexpToRegexp(path, keys);
-      }
-      if (Array.isArray(path)) {
-          return arrayToRegexp(path, keys, options);
-      }
+      if (path instanceof RegExp)
+          { return regexpToRegexp(path, keys); }
+      if (Array.isArray(path))
+          { return arrayToRegexp(path, keys, options); }
       return stringToRegexp(path, keys, options);
   }
 
@@ -6031,6 +6075,9 @@
         .removeClass('navbar-previous navbar-current navbar-next')
         .addClass(("navbar-" + newPagePosition + (isMaster ? ' navbar-master' : '') + (isDetail ? ' navbar-master-detail' : '') + (isDetailRoot ? ' navbar-master-detail-root' : '')))
         .removeClass('stacked');
+      if (isMaster || isDetail) {
+        router.emit('navbarRole', $newNavbarEl[0], { role: isMaster ? 'master' : 'detail', detailRoot: !!isDetailRoot });
+      }
     }
 
     // Find Old Page
@@ -6052,6 +6099,8 @@
         $oldNavbarEl = $navbarsInView.filter(function (index, navbarEl) { return navbarEl !== $newNavbarEl[0]; });
       }
     } else {
+      var removedPageEls = [];
+      var removedNavbarEls = [];
       if ($pagesInView.length > 1) {
         var i$2 = 0;
         for (i$2 = 0; i$2 < $pagesInView.length - 1; i$2 += 1) {
@@ -6063,6 +6112,7 @@
             router.emit('pageMasterStack', $pagesInView[i$2]);
             if (dynamicNavbar) {
               $(app.navbar.getElByPage(masterPageEl)).addClass('navbar-master-stacked');
+              router.emit('navbarMasterStack', app.navbar.getElByPage(masterPageEl));
             }
             continue; // eslint-disable-line
           }
@@ -6076,9 +6126,11 @@
             }
           } else {
             // Page remove event
+            removedPageEls.push($pagesInView[i$2]);
             router.pageCallback('beforeRemove', $pagesInView[i$2], $navbarsInView && $navbarsInView[i$2], 'previous', undefined, options);
             router.removePage($pagesInView[i$2]);
             if (dynamicNavbar && oldNavbarEl) {
+              removedNavbarEls.push(oldNavbarEl);
               router.removeNavbar(oldNavbarEl);
             }
           }
@@ -6086,12 +6138,14 @@
       }
       $oldPage = $viewEl
         .children('.page:not(.stacked)')
-        .filter(function (index, page) { return page !== $newPage[0]; });
+        .filter(function (index, pageEl) { return pageEl !== $newPage[0] && removedPageEls.indexOf(pageEl) < 0; });
       if (dynamicNavbar) {
         $oldNavbarEl = $navbarsEl
           .children('.navbar:not(.stacked)')
-          .filter(function (index, navbarEl) { return navbarEl !== $newNavbarEl[0]; });
+          .filter(function (index, navbarEl) { return navbarEl !== $newNavbarEl[0] && removedNavbarEls.indexOf(removedNavbarEls) < 0; });
       }
+      removedPageEls = [];
+      removedNavbarEls = [];
     }
 
     if (isDetail && !options.reloadAll) {
@@ -7266,6 +7320,9 @@
         .addClass(("navbar-previous" + (isMaster ? ' navbar-master' : '') + (isDetail ? ' navbar-master-detail' : '') + (isDetailRoot ? ' navbar-master-detail-root' : '')))
         .removeClass('stacked')
         .removeAttr('aria-hidden');
+      if (isMaster || isDetailRoot) {
+        router.emit('navbarRole', $newNavbarEl[0], { role: isMaster ? 'master' : 'detail', detailRoot: !!isDetailRoot });
+      }
     }
 
     // Remove previous page in case of "forced"
@@ -7390,6 +7447,7 @@
         router.emit('pageMasterUnstack', $newPage[0]);
         if (dynamicNavbar) {
           $(app.navbar.getElByPage($newPage)).removeClass('navbar-master-stacked');
+          router.emi('navbarMasterUnstack', app.navbar.getElByPage($newPage));
         }
       }
       // Page init and before init events
@@ -9533,1819 +9591,6 @@
     },
   };
 
-  var RouterTemplateLoaderModule = {
-    name: 'routerTemplateLoader',
-    proto: {
-      templateLoader: function templateLoader(template, templateUrl, options, resolve, reject) {
-        var router = this;
-        function compile(t) {
-          var compiledHtml;
-          var context;
-          try {
-            context = options.context || {};
-            if (typeof context === 'function') { context = context.call(router); }
-            else if (typeof context === 'string') {
-              try {
-                context = JSON.parse(context);
-              } catch (err) {
-                reject();
-                throw (err);
-              }
-            }
-            if (typeof t === 'function') {
-              compiledHtml = t(context);
-            } else {
-              compiledHtml = Template7.compile(t)(Utils.extend({}, context || {}, {
-                $app: router.app,
-                $root: Utils.extend({}, router.app.data, router.app.methods),
-                $route: options.route,
-                $f7route: options.route,
-                $router: router,
-                $f7router: router,
-                $theme: {
-                  ios: router.app.theme === 'ios',
-                  md: router.app.theme === 'md',
-                  aurora: router.app.theme === 'aurora',
-                },
-              }));
-            }
-          } catch (err) {
-            reject();
-            throw (err);
-          }
-          resolve(compiledHtml, { context: context });
-        }
-        if (templateUrl) {
-          // Load via XHR
-          if (router.xhr) {
-            router.xhr.abort();
-            router.xhr = false;
-          }
-          router
-            .xhrRequest(templateUrl, options)
-            .then(function (templateContent) {
-              compile(templateContent);
-            })
-            .catch(function () {
-              reject();
-            });
-        } else {
-          compile(template);
-        }
-      },
-
-      modalTemplateLoader: function modalTemplateLoader(template, templateUrl, options, resolve, reject) {
-        var router = this;
-        return router.templateLoader(template, templateUrl, options, function (html) {
-          resolve(html);
-        }, reject);
-      },
-
-      tabTemplateLoader: function tabTemplateLoader(template, templateUrl, options, resolve, reject) {
-        var router = this;
-        return router.templateLoader(template, templateUrl, options, function (html) {
-          resolve(html);
-        }, reject);
-      },
-
-      pageTemplateLoader: function pageTemplateLoader(template, templateUrl, options, resolve, reject) {
-        var router = this;
-        return router.templateLoader(template, templateUrl, options, function (html, newOptions) {
-          if ( newOptions === void 0 ) newOptions = {};
-
-          resolve(router.getPageEl(html), newOptions);
-        }, reject);
-      },
-    },
-  };
-
-  var RouterComponentLoaderModule = {
-    name: 'routerComponentLoader',
-    proto: {
-      componentLoader: function componentLoader(component, componentUrl, options, resolve, reject) {
-        if ( options === void 0 ) options = {};
-
-        var router = this;
-        var app = router.app;
-        var url = typeof component === 'string' ? component : componentUrl;
-        var compiledUrl = router.replaceRequestUrlParams(url, options);
-        function compile(componentOptions) {
-          var context = options.context || {};
-          if (typeof context === 'function') { context = context.call(router); }
-          else if (typeof context === 'string') {
-            try {
-              context = JSON.parse(context);
-            } catch (err) {
-              reject();
-              throw (err);
-            }
-          }
-          var extendContext = Utils.merge(
-            {},
-            context,
-            {
-              $route: options.route,
-              $f7route: options.route,
-              $router: router,
-              $f7router: router,
-              $theme: {
-                ios: app.theme === 'ios',
-                md: app.theme === 'md',
-                aurora: app.theme === 'aurora',
-              },
-            }
-          );
-          app.component.create(componentOptions, extendContext)
-            .then(function (createdComponent) {
-              resolve(createdComponent.el);
-            })
-            .catch(function (err) {
-              reject();
-              throw new Error(err);
-            });
-        }
-        var cachedComponent;
-        if (compiledUrl && router.params.componentCache) {
-          router.cache.components.forEach(function (cached) {
-            if (cached.url === compiledUrl) { cachedComponent = cached.component; }
-          });
-        }
-        if (compiledUrl && cachedComponent) {
-          compile(cachedComponent);
-        } else if (compiledUrl && !cachedComponent) {
-          // Load via XHR
-          if (router.xhr) {
-            router.xhr.abort();
-            router.xhr = false;
-          }
-          router
-            .xhrRequest(url, options)
-            .then(function (loadedComponent) {
-              var parsedComponent = app.component.parse(loadedComponent);
-              if (router.params.componentCache) {
-                router.cache.components.push({
-                  url: compiledUrl,
-                  component: parsedComponent,
-                });
-              }
-              compile(parsedComponent);
-            })
-            .catch(function (err) {
-              reject();
-              throw (err);
-            });
-        } else {
-          compile(component);
-        }
-      },
-
-      modalComponentLoader: function modalComponentLoader(rootEl, component, componentUrl, options, resolve, reject) {
-        var router = this;
-        router.componentLoader(component, componentUrl, options, function (el) {
-          resolve(el);
-        }, reject);
-      },
-
-      tabComponentLoader: function tabComponentLoader(tabEl, component, componentUrl, options, resolve, reject) {
-        var router = this;
-        router.componentLoader(component, componentUrl, options, function (el) {
-          resolve(el);
-        }, reject);
-      },
-
-      pageComponentLoader: function pageComponentLoader(routerEl, component, componentUrl, options, resolve, reject) {
-        var router = this;
-        router.componentLoader(component, componentUrl, options, function (el, newOptions) {
-          if ( newOptions === void 0 ) newOptions = {};
-
-          resolve(el, newOptions);
-        }, reject);
-      },
-    },
-  };
-
-  function vnode(sel, data, children, text, elm) {
-      var key = data === undefined ? undefined : data.key;
-      return { sel: sel, data: data, children: children,
-          text: text, elm: elm, key: key };
-  }
-
-  var array = Array.isArray;
-  function primitive(s) {
-      return typeof s === 'string' || typeof s === 'number';
-  }
-
-  function addNS(data, children, sel) {
-      data.ns = 'http://www.w3.org/2000/svg';
-      if (sel !== 'foreignObject' && children !== undefined) {
-          for (var i = 0; i < children.length; ++i) {
-              var childData = children[i].data;
-              if (childData !== undefined) {
-                  addNS(childData, children[i].children, children[i].sel);
-              }
-          }
-      }
-  }
-  function h(sel, b, c) {
-      var data = {}, children, text, i;
-      if (c !== undefined) {
-          data = b;
-          if (array(c)) {
-              children = c;
-          }
-          else if (primitive(c)) {
-              text = c;
-          }
-          else if (c && c.sel) {
-              children = [c];
-          }
-      }
-      else if (b !== undefined) {
-          if (array(b)) {
-              children = b;
-          }
-          else if (primitive(b)) {
-              text = b;
-          }
-          else if (b && b.sel) {
-              children = [b];
-          }
-          else {
-              data = b;
-          }
-      }
-      if (array(children)) {
-          for (i = 0; i < children.length; ++i) {
-              if (primitive(children[i]))
-                  { children[i] = vnode(undefined, undefined, undefined, children[i], undefined); }
-          }
-      }
-      if (sel[0] === 's' && sel[1] === 'v' && sel[2] === 'g' &&
-          (sel.length === 3 || sel[3] === '.' || sel[3] === '#')) {
-          addNS(data, children, sel);
-      }
-      return vnode(sel, data, children, text, undefined);
-  }
-
-  var customComponents = {};
-
-  /* eslint no-use-before-define: "off" */
-
-  var selfClosing = 'area base br col command embed hr img input keygen link menuitem meta param source track wbr'.split(' ');
-  var propsAttrs = 'hidden checked disabled readonly selected autocomplete autofocus autoplay required multiple value indeterminate'.split(' ');
-  var booleanProps = 'hidden checked disabled readonly selected autocomplete autofocus autoplay required multiple readOnly indeterminate'.split(' ');
-  var tempDomDIV = doc.createElement('div');
-  var tempDomTBODY;
-  var tempDomTROW;
-
-  function toCamelCase$1(name) {
-    return name
-      .split('-')
-      .map(function (word, index) {
-        if (index === 0) { return word.toLowerCase(); }
-        return word[0].toUpperCase() + word.substr(1);
-      })
-      .join('');
-  }
-  function contextFromAttrs() {
-    var args = [], len = arguments.length;
-    while ( len-- ) args[ len ] = arguments[ len ];
-
-    var context = {};
-    args.forEach(function (obj) {
-      if ( obj === void 0 ) obj = {};
-
-      Object.keys(obj).forEach(function (key) {
-        context[toCamelCase$1(key)] = obj[key];
-      });
-    });
-
-    return context;
-  }
-
-  function createCustomComponent(ref) {
-    var app = ref.app;
-    var vnode = ref.vnode;
-    var tagName = ref.tagName;
-    var data = ref.data;
-
-    app.component.create(
-      Object.assign({ el: vnode.elm }, customComponents[tagName]),
-      {
-        $props: contextFromAttrs(data.attrs || {}, data.props || {}),
-      },
-      vnode.children
-    ).then(function (c) {
-      if (vnode.data && vnode.data.on && c && c.$el) {
-        Object.keys(vnode.data.on).forEach(function (eventName) {
-          c.$el.on(eventName, vnode.data.on[eventName]);
-        });
-      }
-      // eslint-disable-next-line
-      vnode.elm.__component__ = c;
-    });
-  }
-  function updateCustomComponent(vnode) {
-    // eslint-disable-next-line
-    var component = vnode && vnode.elm && vnode.elm.__component__;
-    if (!component) { return; }
-    var newProps = contextFromAttrs(vnode.data.attrs || {}, vnode.data.props || {});
-    component.$children = vnode.children;
-    Object.assign(component.$props, newProps);
-    component.$update();
-  }
-  function destroyCustomComponent(vnode) {
-    // eslint-disable-next-line
-    var component = vnode && vnode.elm && vnode.elm.__component__;
-
-    if (component) {
-      var el = component.el;
-      var $el = component.$el;
-      if (vnode.data && vnode.data.on && $el) {
-        Object.keys(vnode.data.on).forEach(function (eventName) {
-          $el.off(eventName, vnode.data.on[eventName]);
-        });
-      }
-      if (component.$destroy) { component.$destroy(); }
-      if (el && el.parentNode) { el.parentNode.removeChild(el); }
-      delete vnode.elm.__component__; // eslint-disable-line
-    }
-  }
-
-  function getHooks(data, app, initial, isRoot, tagName) {
-    var hooks = {};
-    var insert = [];
-    var destroy = [];
-    var update = [];
-    var postpatch = [];
-    var isFakeElement = false;
-    if (data && data.attrs && data.attrs.component) {
-      // eslint-disable-next-line
-      tagName = data.attrs.component;
-      delete data.attrs.component;
-      isFakeElement = true;
-    }
-    var isCustomComponent = tagName && tagName.indexOf('-') > 0 && customComponents[tagName];
-    if (isCustomComponent) {
-      insert.push(function (vnode) {
-        if (vnode.sel !== tagName && !isFakeElement) { return; }
-        createCustomComponent({ app: app, vnode: vnode, tagName: tagName, data: data });
-      });
-      destroy.push(function (vnode) {
-        destroyCustomComponent(vnode);
-      });
-      update.push(function (oldVnode, vnode) {
-        updateCustomComponent(vnode);
-      });
-    }
-
-    if (!isCustomComponent) {
-      if (!data || !data.attrs || !data.attrs.class) { return hooks; }
-
-      var classNames = data.attrs.class;
-      classNames.split(' ').forEach(function (className) {
-        if (!initial) {
-          insert.push.apply(insert, app.getVnodeHooks('insert', className));
-        }
-        destroy.push.apply(destroy, app.getVnodeHooks('destroy', className));
-        update.push.apply(update, app.getVnodeHooks('update', className));
-        postpatch.push.apply(postpatch, app.getVnodeHooks('postpatch', className));
-      });
-    }
-
-    if (isRoot && !initial) {
-      postpatch.push(function (oldVnode, vnode) {
-        var vn = vnode || oldVnode;
-        if (!vn) { return; }
-        if (vn.data && vn.data.context && vn.data.context.$options.updated) {
-          vn.data.context.$hook('updated');
-        }
-      });
-    }
-    if (insert.length === 0 && destroy.length === 0 && update.length === 0 && postpatch.length === 0) {
-      return hooks;
-    }
-
-    if (insert.length) {
-      hooks.insert = function (vnode) {
-        insert.forEach(function (f) { return f(vnode); });
-      };
-    }
-    if (destroy.length) {
-      hooks.destroy = function (vnode) {
-        destroy.forEach(function (f) { return f(vnode); });
-      };
-    }
-    if (update.length) {
-      hooks.update = function (oldVnode, vnode) {
-        update.forEach(function (f) { return f(oldVnode, vnode); });
-      };
-    }
-    if (postpatch.length) {
-      hooks.postpatch = function (oldVnode, vnode) {
-        postpatch.forEach(function (f) { return f(oldVnode, vnode); });
-      };
-    }
-
-    return hooks;
-  }
-  function getEventHandler(handlerString, context, ref) {
-    if ( ref === void 0 ) ref = {};
-    var stop = ref.stop;
-    var prevent = ref.prevent;
-    var once = ref.once;
-
-    var fired = false;
-    var methodName;
-    var method;
-    var customArgs = [];
-    var needMethodBind = true;
-
-    if (handlerString.indexOf('(') < 0) {
-      methodName = handlerString;
-    } else {
-      methodName = handlerString.split('(')[0];
-    }
-    if (methodName.indexOf('.') >= 0) {
-      methodName.split('.').forEach(function (path, pathIndex) {
-        if (pathIndex === 0 && path === 'this') { return; }
-        if (pathIndex === 0 && path === 'window') {
-          // eslint-disable-next-line
-          method = win;
-          needMethodBind = false;
-          return;
-        }
-        if (!method) { method = context; }
-        if (method[path]) { method = method[path]; }
-        else {
-          throw new Error(("Framework7: Component doesn't have method \"" + (methodName.split('.').slice(0, pathIndex + 1).join('.')) + "\""));
-        }
-      });
-    } else {
-      if (!context[methodName]) {
-        throw new Error(("Framework7: Component doesn't have method \"" + methodName + "\""));
-      }
-      method = context[methodName];
-    }
-    if (needMethodBind) {
-      method = method.bind(context);
-    }
-
-    function handler() {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      var e = args[0];
-      if (once && fired) { return; }
-      if (stop) { e.stopPropagation(); }
-      if (prevent) { e.preventDefault(); }
-      fired = true;
-
-      if (handlerString.indexOf('(') < 0) {
-        customArgs = args;
-      } else {
-        var handlerArguments = handlerString
-          .split('(')[1]
-          .split(')')[0]
-          .replace(/'[^']*'|"[^"]*"/g, function (a) { return a.replace(/,/g, '<_comma_>'); })
-          .split(',')
-          .map(function (a) { return a.replace(/<_comma_>/g, ','); });
-        handlerArguments.forEach(function (argument) {
-          var arg = argument.trim();
-          // eslint-disable-next-line
-          if (!isNaN(arg)) { arg = parseFloat(arg); }
-          else if (arg === 'true') { arg = true; }
-          else if (arg === 'false') { arg = false; }
-          else if (arg === 'null') { arg = null; }
-          else if (arg === 'undefined') { arg = undefined; }
-          else if (arg[0] === '"') { arg = arg.replace(/"/g, ''); }
-          else if (arg[0] === '\'') { arg = arg.replace(/'/g, ''); }
-          else if (arg.indexOf('.') > 0) {
-            var deepArg;
-            arg.split('.').forEach(function (path) {
-              if (!deepArg) { deepArg = context; }
-              deepArg = deepArg[path];
-            });
-            arg = deepArg;
-          } else {
-            arg = context[arg];
-          }
-          customArgs.push(arg);
-        });
-      }
-
-      method.apply(void 0, customArgs);
-    }
-
-    return handler;
-  }
-
-  function getData(el, context, app, initial, isRoot, tagName) {
-    var data = { context: context };
-    var attributes = el.attributes;
-    Array.prototype.forEach.call(attributes, function (attr) {
-      var attrName = attr.name;
-      var attrValue = attr.value;
-      if (propsAttrs.indexOf(attrName) >= 0) {
-        // Props
-        if (!data.props) { data.props = {}; }
-        if (attrName === 'readonly') {
-          attrName = 'readOnly';
-        }
-        if (booleanProps.indexOf(attrName) >= 0) {
-          // eslint-disable-next-line
-          data.props[attrName] = attrValue === false ? false : true;
-        } else {
-          data.props[attrName] = attrValue;
-        }
-      } else if (attrName === 'key') {
-        // Key
-        data.key = attrValue;
-      } else if (attrName.indexOf('@') === 0) {
-        // Events
-        if (!data.on) { data.on = {}; }
-        var eventName = attrName.substr(1);
-        var stop = false;
-        var prevent = false;
-        var once = false;
-        if (eventName.indexOf('.') >= 0) {
-          eventName.split('.').forEach(function (eventNamePart, eventNameIndex) {
-            if (eventNameIndex === 0) { eventName = eventNamePart; }
-            else {
-              if (eventNamePart === 'stop') { stop = true; }
-              if (eventNamePart === 'prevent') { prevent = true; }
-              if (eventNamePart === 'once') { once = true; }
-            }
-          });
-        }
-        data.on[eventName] = getEventHandler(attrValue, context, { stop: stop, prevent: prevent, once: once });
-      } else if (attrName === 'style') {
-        // Style
-        if (attrValue.indexOf('{') >= 0 && attrValue.indexOf('}') >= 0) {
-          try {
-            data.style = JSON.parse(attrValue);
-          } catch (e) {
-            if (!data.attrs) { data.attrs = {}; }
-            data.attrs.style = attrValue;
-          }
-        } else {
-          if (!data.attrs) { data.attrs = {}; }
-          data.attrs.style = attrValue;
-        }
-      } else {
-        // Rest of attribures
-        if (!data.attrs) { data.attrs = {}; }
-        data.attrs[attrName] = attrValue;
-
-        // ID -> Key
-        if (attrName === 'id' && !data.key && !isRoot) {
-          data.key = attrValue;
-        }
-      }
-    });
-    if (isRoot && context && context.$id && context.$style && context.$styleScoped) {
-      if (!data.attrs) { data.attrs = {}; }
-      data.attrs[("data-f7-" + (context.$id))] = '';
-    }
-    var hooks = getHooks(data, app, initial, isRoot, tagName);
-    hooks.prepatch = function (oldVnode, vnode) {
-      if (!oldVnode || !vnode) { return; }
-      if (oldVnode && oldVnode.data && oldVnode.data.props) {
-        Object.keys(oldVnode.data.props).forEach(function (key) {
-          if (booleanProps.indexOf(key) < 0) { return; }
-          if (!vnode.data) { vnode.data = {}; }
-          if (!vnode.data.props) { vnode.data.props = {}; }
-          if (oldVnode.data.props[key] === true && !(key in vnode.data.props)) {
-            vnode.data.props[key] = false;
-          }
-        });
-      }
-    };
-    if (hooks) {
-      data.hook = hooks;
-    }
-    return data;
-  }
-
-  function getChildren(el, context, app, initial) {
-    var children = [];
-    var nodes = el.childNodes;
-    for (var i = 0; i < nodes.length; i += 1) {
-      var childNode = nodes[i];
-      var child = elementToVNode(childNode, context, app, initial);
-      if (Array.isArray(child)) {
-        children.push.apply(children, child);
-      } else if (child) {
-        children.push(child);
-      }
-    }
-    return children;
-  }
-
-  function getSlots(slotEl, context, app, initial) {
-    var slotName = slotEl.getAttribute('name') || 'default';
-    var slots = (context.$children || [])
-      .filter(function (childEl) {
-        var childSlotName = 'default';
-        if (childEl.data) {
-          childSlotName = (childEl.data.attrs && childEl.data.attrs.slot) || 'default';
-        }
-        return childSlotName === slotName;
-      });
-    if (slots.length === 0) {
-      return getChildren(slotEl, context, app, initial);
-    }
-    return slots;
-  }
-
-  function elementToVNode(el, context, app, initial, isRoot) {
-    if (el.nodeType === 3) {
-      // text
-      return el.textContent;
-    }
-    if (el.nodeType !== 1) { return null; }
-    // element (statement adds inline SVG compatibility)
-    var tagName = (el instanceof win.SVGElement) ? el.nodeName : el.nodeName.toLowerCase();
-    if (tagName === 'slot') {
-      return getSlots(el, context, app, initial);
-    }
-    return h(
-      tagName,
-      getData(el, context, app, initial, isRoot, tagName),
-      selfClosing.indexOf(tagName) >= 0 ? [] : getChildren(el, context, app, initial)
-    );
-  }
-
-  function vdom (html, context, initial) {
-    if ( html === void 0 ) html = '';
-
-    // Save to temp dom
-    var htmlTrim = html.trim();
-    var tempDom = tempDomDIV;
-    if (htmlTrim.indexOf('<tr') === 0) {
-      if (!tempDomTBODY) { tempDomTBODY = doc.createElement('tbody'); }
-      tempDom = tempDomTBODY;
-    }
-    if (htmlTrim.indexOf('<td') === 0 || htmlTrim.indexOf('<th') === 0) {
-      if (!tempDomTROW) { tempDomTROW = doc.createElement('tr'); }
-      tempDom = tempDomTROW;
-    }
-    tempDom.innerHTML = htmlTrim;
-
-    // Parse DOM
-    var rootEl;
-    for (var i = 0; i < tempDom.childNodes.length; i += 1) {
-      if (!rootEl && tempDom.childNodes[i].nodeType === 1) {
-        rootEl = tempDom.childNodes[i];
-      }
-    }
-    var result = elementToVNode(rootEl, context, context.$app, initial, true);
-
-    // Clean
-    tempDom.innerHTML = '';
-
-    return result;
-  }
-
-  function createElement(tagName) {
-      return document.createElement(tagName);
-  }
-  function createElementNS(namespaceURI, qualifiedName) {
-      return document.createElementNS(namespaceURI, qualifiedName);
-  }
-  function createTextNode(text) {
-      return document.createTextNode(text);
-  }
-  function createComment(text) {
-      return document.createComment(text);
-  }
-  function insertBefore$1(parentNode, newNode, referenceNode) {
-      if (referenceNode && referenceNode.parentNode !== parentNode) {
-        if (referenceNode.__component__) { referenceNode = referenceNode.__component__.el; }
-      }
-      parentNode.insertBefore(newNode, referenceNode);
-  }
-  function removeChild(node, child) {
-      if (!node) { return; }
-      node.removeChild(child);
-  }
-  function appendChild(node, child) {
-      node.appendChild(child);
-  }
-  function parentNode(node) {
-      return node.parentNode;
-  }
-  function nextSibling(node) {
-      return node.nextSibling;
-  }
-  function tagName(elm) {
-      return elm.tagName;
-  }
-  function setTextContent(node, text) {
-      node.textContent = text;
-  }
-  function getTextContent(node) {
-      return node.textContent;
-  }
-  function isElement(node) {
-      return node.nodeType === 1;
-  }
-  function isText(node) {
-      return node.nodeType === 3;
-  }
-  function isComment(node) {
-      return node.nodeType === 8;
-  }
-  var htmlDomApi = {
-      createElement: createElement,
-      createElementNS: createElementNS,
-      createTextNode: createTextNode,
-      createComment: createComment,
-      insertBefore: insertBefore$1,
-      removeChild: removeChild,
-      appendChild: appendChild,
-      parentNode: parentNode,
-      nextSibling: nextSibling,
-      tagName: tagName,
-      setTextContent: setTextContent,
-      getTextContent: getTextContent,
-      isElement: isElement,
-      isText: isText,
-      isComment: isComment,
-  };
-
-  function isUndef(s) { return s === undefined; }
-  function isDef(s) { return s !== undefined; }
-  var emptyNode = vnode('', {}, [], undefined, undefined);
-  function sameVnode(vnode1, vnode2) {
-      return vnode1.key === vnode2.key && vnode1.sel === vnode2.sel;
-  }
-  function isVnode(vnode) {
-      return vnode.sel !== undefined;
-  }
-  function createKeyToOldIdx(children, beginIdx, endIdx) {
-      var i, map = {}, key, ch;
-      for (i = beginIdx; i <= endIdx; ++i) {
-          ch = children[i];
-          if (ch != null) {
-              key = ch.key;
-              if (key !== undefined)
-                  { map[key] = i; }
-          }
-      }
-      return map;
-  }
-  var hooks = ['create', 'update', 'remove', 'destroy', 'pre', 'post'];
-  function init(modules, domApi) {
-      var i, j, cbs = {};
-      var api = domApi !== undefined ? domApi : htmlDomApi;
-      for (i = 0; i < hooks.length; ++i) {
-          cbs[hooks[i]] = [];
-          for (j = 0; j < modules.length; ++j) {
-              var hook = modules[j][hooks[i]];
-              if (hook !== undefined) {
-                  cbs[hooks[i]].push(hook);
-              }
-          }
-      }
-      function emptyNodeAt(elm) {
-          var id = elm.id ? '#' + elm.id : '';
-          var c = elm.className ? '.' + elm.className.split(' ').join('.') : '';
-          return vnode(api.tagName(elm).toLowerCase() + id + c, {}, [], undefined, elm);
-      }
-      function createRmCb(childElm, listeners) {
-          return function rmCb() {
-              if (--listeners === 0) {
-                  var parent_1 = api.parentNode(childElm);
-                  api.removeChild(parent_1, childElm);
-              }
-          };
-      }
-      function createElm(vnode, insertedVnodeQueue) {
-          var i, data = vnode.data;
-          if (data !== undefined) {
-              if (isDef(i = data.hook) && isDef(i = i.init)) {
-                  i(vnode);
-                  data = vnode.data;
-              }
-          }
-          var children = vnode.children, sel = vnode.sel;
-          if (sel === '!') {
-              if (isUndef(vnode.text)) {
-                  vnode.text = '';
-              }
-              vnode.elm = api.createComment(vnode.text);
-          }
-          else if (sel !== undefined) {
-              // Parse selector
-              var hashIdx = sel.indexOf('#');
-              var dotIdx = sel.indexOf('.', hashIdx);
-              var hash = hashIdx > 0 ? hashIdx : sel.length;
-              var dot = dotIdx > 0 ? dotIdx : sel.length;
-              var tag = hashIdx !== -1 || dotIdx !== -1 ? sel.slice(0, Math.min(hash, dot)) : sel;
-              var elm = vnode.elm = isDef(data) && isDef(i = data.ns) ? api.createElementNS(i, tag)
-                  : api.createElement(tag);
-              if (hash < dot)
-                  { elm.setAttribute('id', sel.slice(hash + 1, dot)); }
-              if (dotIdx > 0)
-                  { elm.setAttribute('class', sel.slice(dot + 1).replace(/\./g, ' ')); }
-              for (i = 0; i < cbs.create.length; ++i)
-                  { cbs.create[i](emptyNode, vnode); }
-              if (array(children)) {
-                  for (i = 0; i < children.length; ++i) {
-                      var ch = children[i];
-                      if (ch != null) {
-                          api.appendChild(elm, createElm(ch, insertedVnodeQueue));
-                      }
-                  }
-              }
-              else if (primitive(vnode.text)) {
-                  api.appendChild(elm, api.createTextNode(vnode.text));
-              }
-              i = vnode.data.hook; // Reuse variable
-              if (isDef(i)) {
-                  if (i.create)
-                      { i.create(emptyNode, vnode); }
-                  if (i.insert)
-                      { insertedVnodeQueue.push(vnode); }
-              }
-          }
-          else {
-              vnode.elm = api.createTextNode(vnode.text);
-          }
-          return vnode.elm;
-      }
-      function addVnodes(parentElm, before, vnodes, startIdx, endIdx, insertedVnodeQueue) {
-          for (; startIdx <= endIdx; ++startIdx) {
-              var ch = vnodes[startIdx];
-              if (ch != null) {
-                  api.insertBefore(parentElm, createElm(ch, insertedVnodeQueue), before);
-              }
-          }
-      }
-      function invokeDestroyHook(vnode) {
-          var i, j, data = vnode.data;
-          if (data !== undefined) {
-              if (isDef(i = data.hook) && isDef(i = i.destroy))
-                  { i(vnode); }
-              for (i = 0; i < cbs.destroy.length; ++i)
-                  { cbs.destroy[i](vnode); }
-              if (vnode.children !== undefined) {
-                  for (j = 0; j < vnode.children.length; ++j) {
-                      i = vnode.children[j];
-                      if (i != null && typeof i !== "string") {
-                          invokeDestroyHook(i);
-                      }
-                  }
-              }
-          }
-      }
-      function removeVnodes(parentElm, vnodes, startIdx, endIdx) {
-          for (; startIdx <= endIdx; ++startIdx) {
-              var i_1 = void 0, listeners = void 0, rm = void 0, ch = vnodes[startIdx];
-              if (ch != null) {
-                  if (isDef(ch.sel)) {
-                      invokeDestroyHook(ch);
-                      listeners = cbs.remove.length + 1;
-                      rm = createRmCb(ch.elm, listeners);
-                      for (i_1 = 0; i_1 < cbs.remove.length; ++i_1)
-                          { cbs.remove[i_1](ch, rm); }
-                      if (isDef(i_1 = ch.data) && isDef(i_1 = i_1.hook) && isDef(i_1 = i_1.remove)) {
-                          i_1(ch, rm);
-                      }
-                      else {
-                          rm();
-                      }
-                  }
-                  else {
-                      api.removeChild(parentElm, ch.elm);
-                  }
-              }
-          }
-      }
-      function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue) {
-          var oldStartIdx = 0, newStartIdx = 0;
-          var oldEndIdx = oldCh.length - 1;
-          var oldStartVnode = oldCh[0];
-          var oldEndVnode = oldCh[oldEndIdx];
-          var newEndIdx = newCh.length - 1;
-          var newStartVnode = newCh[0];
-          var newEndVnode = newCh[newEndIdx];
-          var oldKeyToIdx;
-          var idxInOld;
-          var elmToMove;
-          var before;
-          while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
-              if (oldStartVnode == null) {
-                  oldStartVnode = oldCh[++oldStartIdx]; // Vnode might have been moved left
-              }
-              else if (oldEndVnode == null) {
-                  oldEndVnode = oldCh[--oldEndIdx];
-              }
-              else if (newStartVnode == null) {
-                  newStartVnode = newCh[++newStartIdx];
-              }
-              else if (newEndVnode == null) {
-                  newEndVnode = newCh[--newEndIdx];
-              }
-              else if (sameVnode(oldStartVnode, newStartVnode)) {
-                  patchVnode(oldStartVnode, newStartVnode, insertedVnodeQueue);
-                  oldStartVnode = oldCh[++oldStartIdx];
-                  newStartVnode = newCh[++newStartIdx];
-              }
-              else if (sameVnode(oldEndVnode, newEndVnode)) {
-                  patchVnode(oldEndVnode, newEndVnode, insertedVnodeQueue);
-                  oldEndVnode = oldCh[--oldEndIdx];
-                  newEndVnode = newCh[--newEndIdx];
-              }
-              else if (sameVnode(oldStartVnode, newEndVnode)) {
-                  patchVnode(oldStartVnode, newEndVnode, insertedVnodeQueue);
-                  api.insertBefore(parentElm, oldStartVnode.elm, api.nextSibling(oldEndVnode.elm));
-                  oldStartVnode = oldCh[++oldStartIdx];
-                  newEndVnode = newCh[--newEndIdx];
-              }
-              else if (sameVnode(oldEndVnode, newStartVnode)) {
-                  patchVnode(oldEndVnode, newStartVnode, insertedVnodeQueue);
-                  api.insertBefore(parentElm, oldEndVnode.elm, oldStartVnode.elm);
-                  oldEndVnode = oldCh[--oldEndIdx];
-                  newStartVnode = newCh[++newStartIdx];
-              }
-              else {
-                  if (oldKeyToIdx === undefined) {
-                      oldKeyToIdx = createKeyToOldIdx(oldCh, oldStartIdx, oldEndIdx);
-                  }
-                  idxInOld = oldKeyToIdx[newStartVnode.key];
-                  if (isUndef(idxInOld)) {
-                      api.insertBefore(parentElm, createElm(newStartVnode, insertedVnodeQueue), oldStartVnode.elm);
-                      newStartVnode = newCh[++newStartIdx];
-                  }
-                  else {
-                      elmToMove = oldCh[idxInOld];
-                      if (elmToMove.sel !== newStartVnode.sel) {
-                          api.insertBefore(parentElm, createElm(newStartVnode, insertedVnodeQueue), oldStartVnode.elm);
-                      }
-                      else {
-                          patchVnode(elmToMove, newStartVnode, insertedVnodeQueue);
-                          oldCh[idxInOld] = undefined;
-                          api.insertBefore(parentElm, elmToMove.elm, oldStartVnode.elm);
-                      }
-                      newStartVnode = newCh[++newStartIdx];
-                  }
-              }
-          }
-          if (oldStartIdx <= oldEndIdx || newStartIdx <= newEndIdx) {
-              if (oldStartIdx > oldEndIdx) {
-                  before = newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].elm;
-                  addVnodes(parentElm, before, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
-              }
-              else {
-                  removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
-              }
-          }
-      }
-      function patchVnode(oldVnode, vnode, insertedVnodeQueue) {
-          var i, hook;
-          if (isDef(i = vnode.data) && isDef(hook = i.hook) && isDef(i = hook.prepatch)) {
-              i(oldVnode, vnode);
-          }
-          var elm = vnode.elm = oldVnode.elm;
-          var oldCh = oldVnode.children;
-          var ch = vnode.children;
-          if (oldVnode === vnode)
-              { return; }
-          if (vnode.data !== undefined) {
-              for (i = 0; i < cbs.update.length; ++i)
-                  { cbs.update[i](oldVnode, vnode); }
-              i = vnode.data.hook;
-              if (isDef(i) && isDef(i = i.update))
-                  { i(oldVnode, vnode); }
-          }
-          if (isUndef(vnode.text)) {
-              if (isDef(oldCh) && isDef(ch)) {
-                  if (oldCh !== ch)
-                      { updateChildren(elm, oldCh, ch, insertedVnodeQueue); }
-              }
-              else if (isDef(ch)) {
-                  if (isDef(oldVnode.text))
-                      { api.setTextContent(elm, ''); }
-                  addVnodes(elm, null, ch, 0, ch.length - 1, insertedVnodeQueue);
-              }
-              else if (isDef(oldCh)) {
-                  removeVnodes(elm, oldCh, 0, oldCh.length - 1);
-              }
-              else if (isDef(oldVnode.text)) {
-                  api.setTextContent(elm, '');
-              }
-          }
-          else if (oldVnode.text !== vnode.text) {
-              api.setTextContent(elm, vnode.text);
-          }
-          if (isDef(hook) && isDef(i = hook.postpatch)) {
-              i(oldVnode, vnode);
-          }
-      }
-      return function patch(oldVnode, vnode) {
-          var i, elm, parent;
-          var insertedVnodeQueue = [];
-          for (i = 0; i < cbs.pre.length; ++i)
-              { cbs.pre[i](); }
-          if (!isVnode(oldVnode)) {
-              oldVnode = emptyNodeAt(oldVnode);
-          }
-          if (sameVnode(oldVnode, vnode)) {
-              patchVnode(oldVnode, vnode, insertedVnodeQueue);
-          }
-          else {
-              elm = oldVnode.elm;
-              parent = api.parentNode(elm);
-              createElm(vnode, insertedVnodeQueue);
-              if (parent !== null) {
-                  api.insertBefore(parent, vnode.elm, api.nextSibling(elm));
-                  removeVnodes(parent, [oldVnode], 0, 0);
-              }
-          }
-          for (i = 0; i < insertedVnodeQueue.length; ++i) {
-              insertedVnodeQueue[i].data.hook.insert(insertedVnodeQueue[i]);
-          }
-          for (i = 0; i < cbs.post.length; ++i)
-              { cbs.post[i](); }
-          return vnode;
-      };
-  }
-
-  var xlinkNS = 'http://www.w3.org/1999/xlink';
-  var xmlNS = 'http://www.w3.org/XML/1998/namespace';
-  var colonChar = 58;
-  var xChar = 120;
-  function updateAttrs(oldVnode, vnode) {
-      var key, elm = vnode.elm, oldAttrs = oldVnode.data.attrs, attrs = vnode.data.attrs;
-      if (!oldAttrs && !attrs)
-          { return; }
-      if (oldAttrs === attrs)
-          { return; }
-      oldAttrs = oldAttrs || {};
-      attrs = attrs || {};
-      // update modified attributes, add new attributes
-      for (key in attrs) {
-          var cur = attrs[key];
-          var old = oldAttrs[key];
-          if (old !== cur) {
-              if (cur === true) {
-                  elm.setAttribute(key, "");
-              }
-              else if (cur === false) {
-                  elm.removeAttribute(key);
-              }
-              else {
-                  if (key.charCodeAt(0) !== xChar) {
-                      elm.setAttribute(key, cur);
-                  }
-                  else if (key.charCodeAt(3) === colonChar) {
-                      // Assume xml namespace
-                      elm.setAttributeNS(xmlNS, key, cur);
-                  }
-                  else if (key.charCodeAt(5) === colonChar) {
-                      // Assume xlink namespace
-                      elm.setAttributeNS(xlinkNS, key, cur);
-                  }
-                  else {
-                      elm.setAttribute(key, cur);
-                  }
-              }
-          }
-      }
-      // remove removed attributes
-      // use `in` operator since the previous `for` iteration uses it (.i.e. add even attributes with undefined value)
-      // the other option is to remove all attributes with value == undefined
-      for (key in oldAttrs) {
-          if (!(key in attrs)) {
-              elm.removeAttribute(key);
-          }
-      }
-  }
-  var attributesModule = { create: updateAttrs, update: updateAttrs };
-
-  function updateProps(oldVnode, vnode) {
-      var key, cur, old, elm = vnode.elm, oldProps = oldVnode.data.props, props = vnode.data.props;
-      if (!oldProps && !props)
-          { return; }
-      if (oldProps === props)
-          { return; }
-      oldProps = oldProps || {};
-      props = props || {};
-      for (key in oldProps) {
-          if (!props[key]) {
-              delete elm[key];
-          }
-      }
-      for (key in props) {
-          cur = props[key];
-          old = oldProps[key];
-          if (old !== cur && (key !== 'value' || elm[key] !== cur)) {
-              elm[key] = cur;
-          }
-      }
-  }
-  var propsModule = { create: updateProps, update: updateProps };
-
-  var raf = (typeof window !== 'undefined' && window.requestAnimationFrame) || setTimeout;
-  var nextFrame = function (fn) { raf(function () { raf(fn); }); };
-  function setNextFrame(obj, prop, val) {
-      nextFrame(function () { obj[prop] = val; });
-  }
-  function updateStyle(oldVnode, vnode) {
-      var cur, name, elm = vnode.elm, oldStyle = oldVnode.data.style, style = vnode.data.style;
-      if (!oldStyle && !style)
-          { return; }
-      if (oldStyle === style)
-          { return; }
-      oldStyle = oldStyle || {};
-      style = style || {};
-      var oldHasDel = 'delayed' in oldStyle;
-      for (name in oldStyle) {
-          if (!style[name]) {
-              if (name[0] === '-' && name[1] === '-') {
-                  elm.style.removeProperty(name);
-              }
-              else {
-                  elm.style[name] = '';
-              }
-          }
-      }
-      for (name in style) {
-          cur = style[name];
-          if (name === 'delayed' && style.delayed) {
-              for (var name2 in style.delayed) {
-                  cur = style.delayed[name2];
-                  if (!oldHasDel || cur !== oldStyle.delayed[name2]) {
-                      setNextFrame(elm.style, name2, cur);
-                  }
-              }
-          }
-          else if (name !== 'remove' && cur !== oldStyle[name]) {
-              if (name[0] === '-' && name[1] === '-') {
-                  elm.style.setProperty(name, cur);
-              }
-              else {
-                  elm.style[name] = cur;
-              }
-          }
-      }
-  }
-  function applyDestroyStyle(vnode) {
-      var style, name, elm = vnode.elm, s = vnode.data.style;
-      if (!s || !(style = s.destroy))
-          { return; }
-      for (name in style) {
-          elm.style[name] = style[name];
-      }
-  }
-  function applyRemoveStyle(vnode, rm) {
-      var s = vnode.data.style;
-      if (!s || !s.remove) {
-          rm();
-          return;
-      }
-      var name, elm = vnode.elm, i = 0, compStyle, style = s.remove, amount = 0, applied = [];
-      for (name in style) {
-          applied.push(name);
-          elm.style[name] = style[name];
-      }
-      compStyle = getComputedStyle(elm);
-      var props = compStyle['transition-property'].split(', ');
-      for (; i < props.length; ++i) {
-          if (applied.indexOf(props[i]) !== -1)
-              { amount++; }
-      }
-      elm.addEventListener('transitionend', function (ev) {
-          if (ev.target === elm)
-              { --amount; }
-          if (amount === 0)
-              { rm(); }
-      });
-  }
-  var styleModule = {
-      create: updateStyle,
-      update: updateStyle,
-      destroy: applyDestroyStyle,
-      remove: applyRemoveStyle
-  };
-
-  function invokeHandler(handler, event, args) {
-    if (typeof handler === 'function') {
-      // call function handler
-      handler.apply(void 0, [ event ].concat( args ));
-    }
-  }
-  function handleEvent(event, args, vnode) {
-    var name = event.type;
-    var on = vnode.data.on;
-    // call event handler(s) if exists
-    if (on && on[name]) {
-      invokeHandler(on[name], event, args);
-    }
-  }
-  function createListener() {
-    return function handler(event) {
-      var args = [], len = arguments.length - 1;
-      while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
-
-      handleEvent(event, args, handler.vnode);
-    };
-  }
-  function updateEvents(oldVnode, vnode) {
-    var oldOn = oldVnode.data.on;
-    var oldListener = oldVnode.listener;
-    var oldElm = oldVnode.elm;
-    var on = vnode && vnode.data.on;
-    var elm = (vnode && vnode.elm);
-    // optimization for reused immutable handlers
-    if (oldOn === on) {
-      return;
-    }
-    // remove existing listeners which no longer used
-    if (oldOn && oldListener) {
-      // if element changed or deleted we remove all existing listeners unconditionally
-      if (!on) {
-        Object.keys(oldOn).forEach(function (name) {
-          $(oldElm).off(name, oldListener);
-        });
-      } else {
-        Object.keys(oldOn).forEach(function (name) {
-          if (!on[name]) {
-            $(oldElm).off(name, oldListener);
-          }
-        });
-      }
-    }
-    // add new listeners which has not already attached
-    if (on) {
-      // reuse existing listener or create new
-      var listener = oldVnode.listener || createListener();
-      vnode.listener = listener;
-      // update vnode for listener
-      listener.vnode = vnode;
-      // if element changed or added we add all needed listeners unconditionally
-      if (!oldOn) {
-        Object.keys(on).forEach(function (name) {
-          $(elm).on(name, listener);
-        });
-      } else {
-        Object.keys(on).forEach(function (name) {
-          if (!oldOn[name]) {
-            $(elm).on(name, listener);
-          }
-        });
-      }
-    }
-  }
-
-  var eventListenersModule = {
-    create: updateEvents,
-    update: updateEvents,
-    destroy: updateEvents,
-  };
-
-  /* eslint import/no-named-as-default: off */
-
-  var patch = init([
-    attributesModule,
-    propsModule,
-    styleModule,
-    eventListenersModule ]);
-
-  var componentMixins = {};
-
-  /* eslint no-underscore-dangle: "off" */
-
-  var Component = function Component(app, options, extendContext, children) {
-    if ( options === void 0 ) options = {};
-    if ( extendContext === void 0 ) extendContext = {};
-
-    var id = Utils.id();
-    var self = this;
-    Utils.merge(
-      self,
-      { $props: {} },
-      extendContext,
-      {
-        $: $,
-        $$: $,
-        $dom7: $,
-        $app: app,
-        $f7: app,
-        $options: Utils.extend({ id: id }, options),
-        $id: options.isClassComponent ? self.constructor.id : (options.id || id),
-        $mixins: options.isClassComponent ? self.constructor.mixins : options.mixins,
-        $children: children || [],
-      }
-    );
-    var $options = self.$options;
-
-
-    if (self.$mixins && self.$mixins.length) {
-      for (var i = self.$mixins.length - 1; i >= 0; i -= 1) {
-        var mixin = self.$mixins[i];
-        if (typeof mixin === 'string') {
-          if (componentMixins[mixin]) { self.$mixins[i] = componentMixins[mixin]; }
-          else { self.$mixins.splice(i, 1); }
-        }
-      }
-    }
-
-    Object.defineProperty(self, '$slots', {
-      enumerable: true,
-      configurable: true,
-      get: function get() {
-        var slots = {};
-        self.$children.forEach(function (childVNode) {
-          var childSlotName = 'default';
-          if (childVNode.data) {
-            childSlotName = (childVNode.data.attrs && childVNode.data.attrs.slot) || 'default';
-          }
-          if (!slots[childSlotName]) { slots[childSlotName] = []; }
-          slots[childSlotName].push(childVNode);
-        });
-        return slots;
-      },
-    });
-
-
-    // Root data and methods
-    Object.defineProperty(self, '$root', {
-      enumerable: true,
-      configurable: true,
-      get: function get() {
-        var root = Utils.merge({}, app.data, app.methods);
-        if (win && win.Proxy) {
-          root = new win.Proxy(root, {
-            set: function set(target, name, val) {
-              app.data[name] = val;
-            },
-            deleteProperty: function deleteProperty(target, name) {
-              delete app.data[name];
-              delete app.methods[name];
-            },
-            has: function has(target, name) {
-              return (name in app.data || name in app.methods);
-            },
-          });
-        }
-        return root;
-      },
-      set: function set() {},
-    });
-
-    // Bind render
-    if ($options.render) { $options.render = $options.render.bind(self); }
-
-    // Bind methods
-    var methods = {};
-    if (self.$mixins && self.$mixins.length) {
-      self.$mixins.forEach(function (mixin) {
-        if (mixin.methods) { Object.assign(methods, mixin.methods); }
-      });
-    }
-    if ($options.methods) {
-      Object.assign(methods, $options.methods);
-    }
-    Object.keys(methods).forEach(function (methodName) {
-      self[methodName] = methods[methodName].bind(self);
-    });
-
-    // Bind Events
-    if ($options.on) {
-      Object.keys($options.on).forEach(function (eventName) {
-        $options.on[eventName] = $options.on[eventName].bind(self);
-      });
-    }
-    if ($options.once) {
-      Object.keys($options.once).forEach(function (eventName) {
-        $options.once[eventName] = $options.once[eventName].bind(self);
-      });
-    }
-
-    self.$style = $options.isClassComponent ? self.constructor.style : $options.style;
-    self.$styleScoped = $options.isClassComponent ? self.constructor.styleScoped : $options.styleScoped;
-
-    self.__updateQueue = [];
-
-    return new Promise(function (resolve, reject) {
-      self.$hook('data', true)
-        .then(function (datas) {
-          var data = {};
-          datas.forEach(function (dt) {
-            Object.assign(data, dt || {});
-          });
-          Utils.extend(self, data);
-          self.$hook('beforeCreate');
-          var html = self.$render();
-
-          if (self.$options.el) {
-            html = html.trim();
-            self.$vnode = vdom(html, self, true);
-            if (self.$style) {
-              self.$styleEl = doc.createElement('style');
-              self.$styleEl.innerHTML = self.$style;
-            }
-            self.el = self.$options.el;
-            patch(self.el, self.$vnode);
-            self.el = self.$vnode.elm;
-            self.$el = $(self.el);
-
-            self.$attachEvents();
-            self.el.f7Component = self;
-            self.$hook('created');
-            self.$mount();
-            resolve(self);
-            return;
-          }
-          // Make Dom
-          if (html && typeof html === 'string') {
-            html = html.trim();
-            self.$vnode = vdom(html, self, true);
-            self.el = doc.createElement(self.$vnode.sel || 'div');
-            patch(self.el, self.$vnode);
-            self.$el = $(self.el);
-          } else if (html) {
-            self.el = html;
-            self.$el = $(self.el);
-          }
-          if (self.$style) {
-            self.$styleEl = doc.createElement('style');
-            self.$styleEl.innerHTML = self.$style;
-          }
-
-          self.$attachEvents();
-
-          if (self.el) {
-            self.el.f7Component = self;
-          }
-
-          self.$hook('created');
-          resolve(self);
-        })
-        .catch(function (err) {
-          reject(err);
-        });
-    });
-  };
-
-  Component.prototype.$attachEvents = function $attachEvents () {
-    var self = this;
-    var $options = self.$options;
-      var $el = self.$el;
-    if (self.$mixins && self.$mixins.length) {
-      self.$detachEventsHandlers = {};
-      self.$mixins.forEach(function (mixin) {
-        if (mixin.on) {
-          Object.keys(mixin.on).forEach(function (eventName) {
-            var handler = mixin.on[eventName].bind(self);
-            if (!self.$detachEventsHandlers[eventName]) { self.$detachEventsHandlers[eventName] = []; }
-            self.$detachEventsHandlers[eventName].push(handler);
-            $el.on(Utils.eventNameToColonCase(eventName), handler);
-          });
-        }
-        if (mixin.once) {
-          Object.keys(mixin.once).forEach(function (eventName) {
-            var handler = mixin.once[eventName].bind(self);
-            if (!self.$detachEventsHandlers[eventName]) { self.$detachEventsHandlers[eventName] = []; }
-            self.$detachEventsHandlers[eventName].push(handler);
-            $el.once(Utils.eventNameToColonCase(eventName), handler);
-          });
-        }
-      });
-    }
-    if ($options.on) {
-      Object.keys($options.on).forEach(function (eventName) {
-        $el.on(Utils.eventNameToColonCase(eventName), $options.on[eventName]);
-      });
-    }
-    if ($options.once) {
-      Object.keys($options.once).forEach(function (eventName) {
-        $el.once(Utils.eventNameToColonCase(eventName), $options.once[eventName]);
-      });
-    }
-  };
-
-  Component.prototype.$detachEvents = function $detachEvents () {
-    var self = this;
-    var $options = self.$options;
-      var $el = self.$el;
-    if ($options.on) {
-      Object.keys($options.on).forEach(function (eventName) {
-        $el.off(Utils.eventNameToColonCase(eventName), $options.on[eventName]);
-      });
-    }
-    if ($options.once) {
-      Object.keys($options.once).forEach(function (eventName) {
-        $el.off(Utils.eventNameToColonCase(eventName), $options.once[eventName]);
-      });
-    }
-    if (!self.$detachEventsHandlers) { return; }
-    Object.keys(self.$detachEventsHandlers).forEach(function (eventName) {
-      var handlers = self.$detachEventsHandlers[eventName];
-      handlers.forEach(function (handler) {
-        $el.off(Utils.eventNameToColonCase(eventName), handler);
-      });
-      self.$detachEventsHandlers[eventName] = [];
-      delete self.$detachEventsHandlers[eventName];
-    });
-    self.$detachEventsHandlers = null;
-    delete self.$detachEventsHandlers;
-  };
-
-  Component.prototype.$render = function $render () {
-    var self = this;
-    var $options = self.$options;
-    var html = '';
-    if ($options.render) {
-      html = $options.render();
-    } else if (self.render) {
-      html = self.render.call(self);
-    } else if ($options.template) {
-      if (typeof $options.template === 'string') {
-        html = Template7.compile($options.template)(self);
-      } else {
-        // Supposed to be function
-        html = $options.template(self);
-      }
-    }
-    return html;
-  };
-
-  Component.prototype.$startUpdateQueue = function $startUpdateQueue () {
-    var self = this;
-    if (self.__requestAnimationFrameId) { return; }
-    function update() {
-      var html = self.$render();
-
-      // Make Dom
-      if (html && typeof html === 'string') {
-        html = html.trim();
-        var newVNode = vdom(html, self, false);
-        self.$vnode = patch(self.$vnode, newVNode);
-      }
-    }
-    self.__requestAnimationFrameId = win.requestAnimationFrame(function () {
-      if (self.__updateIsPending) { update(); }
-      self.__updateQueue.forEach(function (resolver) { return resolver(); });
-      self.__updateQueue = [];
-      self.__updateIsPending = false;
-      win.cancelAnimationFrame(self.__requestAnimationFrameId);
-      delete self.__requestAnimationFrameId;
-      delete self.__updateIsPending;
-    });
-  };
-
-  Component.prototype.$tick = function $tick (callback) {
-    var self = this;
-    return new Promise(function (resolve) {
-      function resolver() {
-        resolve();
-        if (callback) { callback(); }
-      }
-      self.__updateQueue.push(resolver);
-      self.$startUpdateQueue();
-    });
-  };
-
-  Component.prototype.$update = function $update (callback) {
-    var self = this;
-    return new Promise(function (resolve) {
-      function resolver() {
-        if (callback) { callback(); }
-        resolve();
-      }
-      self.__updateIsPending = true;
-      self.__updateQueue.push(resolver);
-      self.$startUpdateQueue();
-    });
-  };
-
-  Component.prototype.$setState = function $setState (mergeState, callback) {
-    var self = this;
-    Utils.merge(self, mergeState);
-    return self.$update(callback);
-  };
-
-  Component.prototype.$mount = function $mount (mountMethod) {
-    var self = this;
-    self.$hook('beforeMount');
-    if (self.$styleEl) { $('head').append(self.$styleEl); }
-    if (mountMethod) { mountMethod(self.el); }
-    self.$hook('mounted');
-  };
-
-  Component.prototype.$destroy = function $destroy () {
-    var self = this;
-    self.$hook('beforeDestroy');
-
-    if (self.$styleEl) { $(self.$styleEl).remove(); }
-    self.$detachEvents();
-    self.$hook('destroyed');
-    // Delete component instance
-    if (self.el && self.el.f7Component) {
-      self.el.f7Component = null;
-      delete self.el.f7Component;
-    }
-    // Patch with empty node
-    if (self.$vnode) {
-      self.$vnode = patch(self.$vnode, { sel: self.$vnode.sel, data: {} });
-    }
-    // Clear update queue
-    win.cancelAnimationFrame(self.__requestAnimationFrameId);
-
-    // Delete all props
-    Utils.deleteProps(self);
-  };
-
-  Component.prototype.$hook = function $hook (name, async) {
-    var self = this;
-    if (async) {
-      var promises = [];
-      if (self.$mixins && self.$mixins.length) {
-        self.$mixins.forEach(function (mixin) {
-          if (mixin[name]) { promises.push(mixin[name].call(self)); }
-        });
-      }
-      if (self[name] && typeof self[name] === 'function') {
-        promises.push(self[name].call(self));
-      }
-      if (self.$options[name]) {
-        promises.push(self.$options[name].call(self));
-      }
-      return Promise.all(promises);
-    }
-    if (self.$mixins && self.$mixins.length) {
-      self.$mixins.forEach(function (mixin) {
-        if (mixin[name] && typeof mixin[name] === 'function') {
-          mixin[name].call(self);
-        }
-      });
-    }
-    if (self.$options[name]) { return self.$options[name].call(self); }
-    if (self[name]) { return self[name].call(self); }
-    return undefined;
-  };
-
-  function parseComponent(componentString) {
-    var id = Utils.id();
-    var callbackCreateName = "f7_component_create_callback_" + id;
-    var callbackRenderName = "f7_component_render_callback_" + id;
-
-    // Template
-    var template;
-    var hasTemplate = componentString.match(/<template([ ]?)([a-z0-9-]*)>/);
-    var templateType = hasTemplate[2] || 't7';
-    if (hasTemplate) {
-      template = componentString
-        .split(/<template[ ]?[a-z0-9-]*>/)
-        .filter(function (item, index) { return index > 0; })
-        .join('<template>')
-        .split('</template>')
-        .filter(function (item, index, arr) { return index < arr.length - 1; })
-        .join('</template>')
-        .replace(/{{#raw}}([ \n]*)<template/g, '{{#raw}}<template')
-        .replace(/\/template>([ \n]*){{\/raw}}/g, '/template>{{/raw}}')
-        .replace(/([ \n])<template/g, '$1{{#raw}}<template')
-        .replace(/\/template>([ \n])/g, '/template>{{/raw}}$1');
-    }
-
-    // Parse Styles
-    var style = null;
-    var styleScoped = false;
-
-    if (componentString.indexOf('<style>') >= 0) {
-      style = componentString.split('<style>')[1].split('</style>')[0];
-    } else if (componentString.indexOf('<style scoped>') >= 0) {
-      styleScoped = true;
-      style = componentString.split('<style scoped>')[1].split('</style>')[0];
-      style = style
-        .replace(/{{this}}/g, ("[data-f7-" + id + "]"))
-        .replace(/[\n]?([^{^}]*){/ig, function (string, rules) {
-          // eslint-disable-next-line
-          rules = rules
-            .split(',')
-            .map(function (rule) {
-              if (rule.indexOf(("[data-f7-" + id + "]")) >= 0) { return rule; }
-              return ("[data-f7-" + id + "] " + (rule.trim()));
-            })
-            .join(', ');
-
-          return ("\n" + rules + " {");
-        });
-    }
-
-    // Parse Script
-    var scriptContent;
-    var scriptEl;
-    if (componentString.indexOf('<script>') >= 0) {
-      var scripts = componentString.split('<script>');
-      scriptContent = scripts[scripts.length - 1].split('</script>')[0].trim();
-    } else {
-      scriptContent = 'return {}';
-    }
-    if (!scriptContent || !scriptContent.trim()) { scriptContent = 'return {}'; }
-
-    scriptContent = "window." + callbackCreateName + " = function () {" + scriptContent + "}";
-
-    // Insert Script El
-    scriptEl = doc.createElement('script');
-    scriptEl.innerHTML = scriptContent;
-    $('head').append(scriptEl);
-
-    var component = win[callbackCreateName]();
-    var isClassComponent = typeof component === 'function';
-
-    // Remove Script El
-    $(scriptEl).remove();
-    win[callbackCreateName] = null;
-    delete win[callbackCreateName];
-
-    // Assign Template
-    if (!component.template && !component.render) {
-      component.template = template;
-      component.templateType = templateType;
-    }
-    if (component.template) {
-      if (component.templateType === 't7') {
-        if (isClassComponent) {
-          var templateFunction = Template7.compile(component.template);
-          component.prototype.render = function render() {
-            return templateFunction(this);
-          };
-        } else {
-          component.template = Template7.compile(component.template);
-        }
-      }
-      if (component.templateType === 'es') {
-        var renderContent = "window." + callbackRenderName + " = function () {\n        return function render() {\n          return `" + (component.template) + "`;\n        }\n      }";
-        scriptEl = doc.createElement('script');
-        scriptEl.innerHTML = renderContent;
-        $('head').append(scriptEl);
-
-        if (isClassComponent) {
-          component.prototype.render = component.template;
-        } else {
-          component.render = win[callbackRenderName]();
-        }
-
-        // Remove Script El
-        $(scriptEl).remove();
-        win[callbackRenderName] = null;
-        delete win[callbackRenderName];
-      }
-    }
-
-    if (isClassComponent) {
-      delete component.template;
-      delete component.templateType;
-    }
-
-    // Assign Style
-    if (style) {
-      component.style = style;
-      component.styleScoped = styleScoped;
-    }
-
-    // Component ID
-    component.id = id;
-    return component;
-  }
-
-  function registerComponentMixin(name, mixin) {
-    componentMixins[name] = mixin;
-  }
-  function registerComponent(tagName, component) {
-    customComponents[tagName] = component;
-  }
-  var ComponentModule = {
-    name: 'component',
-    static: {
-      Component: Component,
-      registerComponentMixin: registerComponentMixin,
-      registerComponent: registerComponent,
-    },
-    create: function create() {
-      var app = this;
-      app.component = {
-        registerComponentMixin: registerComponentMixin,
-        registerComponent: registerComponent,
-        parse: function parse(componentString) {
-          return parseComponent(componentString);
-        },
-        create: function create(options, context, children) {
-          if (typeof options === 'function') {
-            // eslint-disable-next-line
-            return new options(app, { isClassComponent: true }, context, children);
-          }
-          return new Component(app, options, context, children);
-        },
-      };
-    },
-  };
-
   var HistoryModule = {
     name: 'history',
     static: {
@@ -13077,20 +11322,19 @@
     },
   };
 
-  {
-    if (typeof window !== 'undefined') {
-      // Template7
-      if (!window.Template7) { window.Template7 = Template7; }
-
-      // Dom7
-      if (!window.Dom7) { window.Dom7 = $; }
-    }
-  }
+  /**
+   * Framework7 5.2.0
+   * Full featured mobile HTML framework for building iOS & Android apps
+   * http://framework7.io/
+   *
+   * Copyright 2014-2019 Vladimir Kharlampidi
+   *
+   * Released under the MIT License
+   *
+   * Released on: December 8, 2019
+   */
 
   // Install Core Modules & Components
-  Router.use([ //NO_LITE
-    RouterTemplateLoaderModule, //NO_LITE
-    RouterComponentLoaderModule ]); //NO_LITE
 
   Framework7.use([
     DeviceModule,
@@ -13102,7 +11346,6 @@
     ClicksModule,
     RouterModule,
     HistoryModule,
-    ComponentModule, //NO_LITE
     ServiceWorkerModule,
     Statusbar$1,
     View$1,
