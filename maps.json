@@ -109,10 +109,10 @@
   "name": "Schoharie Creek Preserve",
   "description": "The 198-acre Schoharie Creek Preserve was given to the Conservancy in 1998 by Drs. Lester Citrin and Clifford Tepper of Schenectady. The preserve is located in Montgomery County on the west bank of the Schoharie Creek, about a mile north of Burtonsville.",
   "directions": [-74.26591,42.81722],
-  "url": "maps/SchoharieCreek_Preserve.jpg",
+  "url": "maps/Schoharie_Creek_Preserve_Map_2019.jpg",
   "link": "https://mohawkhudson.org/our-preserves/schoharie-creek-preserve/",
-  "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [551425.461, 1447646.694, 556669.921, 1454429.48]
+  "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [2303449.584, 1051985.252, 2308760.460, 1058856.768]
 }, {
   "name": "Strawberry Fields Nature Preserve",
   "description": "Strawberry Fields is 118 acres of protected land. The property includes the nature preserve, a family homestead, and a working farm. The property was protected in 2013 under a conservation easement with MHLC. In 2017, Jeff Leon, steward of the preserve, officially opened Strawberry Fields Nature Preserve to the public.",
@@ -141,10 +141,10 @@
   "name": "Winn (Hudson and Nancy) Preserve",
   "description": "This preserve began as a 129 acre gift from Nancy Winn of Slingerlands. Later acquisitions increased its size to 208 acres. The property is along the Helderberg Escarpment and is geologically significant.",
   "directions": [-74.11673,42.68818],
-  "url": "maps/Winn_Preserve-2017-map.jpg",
+  "url": "maps/Winn_Preserve-2018.jpg",
   "link": "https://mohawkhudson.org/our-preserves/winn-hudson-and-nancy-preserve/",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [594504.195, 1402268.570, 601840.019, 1407935.398]
+  "extent": [594504.195, 1402268.888, 601840.801, 1407935.398]
 }, {
   "name": "Wolf Creek Falls Preserve",
   "description": "Wolf Creek Falls Preserve, opened in the Fall of 2007, consists of 135 acres in the Town of Knox, and was a gift of Steve Brown, a retired SUNY professor. This gorgeous parcel, which is open for public hiking, contains streams and waterfalls, a wetland, and numerous old stone walls.",

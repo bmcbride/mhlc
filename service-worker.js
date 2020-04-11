@@ -38,11 +38,11 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/Normanskill_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Phillipinkill_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Schiffendecker_Preserve.jpg', revision: '04.08.20.1'},
-  {url: 'maps/SchoharieCreek_Preserve.jpg', revision: '04.08.20.1'},
+  {url: 'maps/Schoharie_Creek_Preserve_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/StrawberryFields_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Swift_Preserve1.jpg', revision: '04.08.20.1'},
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
-  {url: 'maps/Winn_Preserve-2017-map.jpg', revision: '04.08.20.1'}
+  {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'}
 ]);
 
 self.addEventListener('activate', event => {
