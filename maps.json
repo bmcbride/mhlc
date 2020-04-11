@@ -31,10 +31,10 @@
   "name": "Bennett Hill Preserve",
   "description": "This 155 acre property was a gift from Dr. Jerry Bilinski of North Chatham in 1998. The hill towers over Clarksville and stands only a short distance from the base of the Helderberg Escarpment. Although the top of the hill is only 400 feet above the surrounding land, it offers striking views of the Helderbergs to the north and west, and Albany to the east.",
   "directions": [-73.96568,42.57161],
-  "url": "maps/Bennett-Hill-Preserve-2017-new-logo.jpg",
+  "url": "maps/Bennett_Hill_Map_2019.jpg",
   "link": "https://mohawkhudson.org/our-preserves/bennett-hill-preserve/",
-  "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [634726.026, 1356754.879, 639542.097, 1362990.739]
+  "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [2390799.707, 965485.962, 2395407.470, 971446.943]
 }, {
   "name": "Bozen Kill Preserve",
   "description": "Flowing from the Helderberg Escarpment, the Bozen Kill is little known beyond Altamont and the Hilltowns. The stream originates from wetlands in Schenectady County and Duane Lake near Delanson and builds as it heads off the mountain.",

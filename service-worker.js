@@ -29,7 +29,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/js/app.js', revision: '04.08.20.1'},
   {url: 'maps/2018-Wolf-Creek-Falls-Preserve-Map.jpg', revision: '04.08.20.1'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
-  {url: 'maps/Bennett-Hill-Preserve-2017-new-logo.jpg', revision: '04.08.20.1'},
+  {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/Bozenkill_Preserve2.jpg', revision: '04.08.20.1'},
   {url: 'maps/Fox_Preserve-10-3-17.jpg', revision: '04.08.20.1'},
   {url: 'maps/Holt_Preserve_2019.jpg', revision: '04.08.20.2'},
