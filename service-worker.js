@@ -27,7 +27,6 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/proj4js-2.5.0/proj4.js', revision: '04.08.20.1'},
   {url: 'assets/vendor/kompas-0.0.1/kompas.js', revision: '04.08.20.1'},
   {url: 'assets/js/app.js', revision: '04.08.20.1'},
-  {url: 'maps/2018-Wolf-Creek-Falls-Preserve-Map.jpg', revision: '04.08.20.1'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/Bozenkill_Preserve2.jpg', revision: '04.08.20.1'},
@@ -42,7 +41,8 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/StrawberryFields_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Swift_Preserve1.jpg', revision: '04.08.20.1'},
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
-  {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'}
+  {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'},
+  {url: 'maps/Wolf_Creek_Falls_Preserve_2019.jpg', revision: '04.10.20.1'}
 ]);
 
 self.addEventListener('activate', event => {
