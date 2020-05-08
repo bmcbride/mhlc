@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '04.10.20.2'},
-  {url: './', revision: '04.10.20.2'}, // Alias for index.html
+  {url: 'index.html', revision: '05.08.20.1'},
+  {url: './', revision: '05.08.20.1'}, // Alias for index.html
   {url: 'maps.json', revision: '04.10.20.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
@@ -17,8 +17,8 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/img/mhlc-logo.png', revision: '04.08.20.1'},
   {url: 'assets/img/crosshair.svg', revision: '04.08.20.1'},
   {url: 'assets/img/ios-share.png', revision: '04.08.20.1'},
-  {url: 'assets/vendor/framework7-5.5.5/css/framework7.bundle.min.css', revision: '04.10.20.1'},
-  {url: 'assets/vendor/framework7-5.5.5/js/framework7.bundle.min.js', revision: '04.10.20.1'},
+  {url: 'assets/vendor/framework7-5.7.1/css/framework7.bundle.min.css', revision: '05.08.20.1'},
+  {url: 'assets/vendor/framework7-5.7.1/js/framework7.bundle.min.js', revision: '05.08.20.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.css', revision: '04.10.20.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.js', revision: '04.10.20.1'},
   {url: 'assets/vendor/proj4js-2.5.0/proj4.js', revision: '04.08.20.1'},
