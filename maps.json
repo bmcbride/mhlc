@@ -52,6 +52,14 @@
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [679476.228, 1434076.371, 683877.638, 1437476.910]
 }, {
+  "name": "Hollyhock Hollow Sanctuary",
+  "description": "This 135-acre sanctuary was the former estate of University at Albany Professor Dr. Robert Rienow and his wife Leona Train Rienow, an accomplished writer. Passionate about nature, the Reinows allowed the forest on this once open farmland property to regenerate.",
+  "directions": [-73.870782,42.540358],
+  "url": "maps/Hollyhock_Hollow_2020.jpg",
+  "link": "https://mohawkhudson.org/our-preserves/hollyhock-hollow-sanctuary/",
+  "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [2416484.959, 959669.018, 2419665.190, 963786.662]
+}, {
   "name": "Holt Preserve",
   "description": "Winifred Matthews Holt Preserve is a 148-acre property on the western face of Copeland Hill in the Town of New Scotland. The preserve is visible from Route 32 and from neighboring hills. The preserve rises at the edge of the flat area known as Indian Fields. Dr. William Holt and Winifred Matthews Holt donated this hillside to the Mohawk Hudson Land Conservancy in 1994.",
   "directions": [-73.92737,42.54389],
