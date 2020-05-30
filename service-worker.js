@@ -8,7 +8,7 @@ workbox.setConfig({
 workbox.precaching.precacheAndRoute([
   {url: 'index.html', revision: '05.08.20.1'},
   {url: './', revision: '05.08.20.1'}, // Alias for index.html
-  {url: 'maps.json', revision: '04.10.20.1'},
+  {url: 'maps.json', revision: '05.29.20.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -25,12 +25,13 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/kompas-0.0.1/kompas.js', revision: '04.08.20.1'},
   {url: 'assets/fonts/MaterialIcons-Regular.woff2', revision: '04.08.20.1'},
   {url: 'assets/css/app.css', revision: '04.08.20.1'},
-  {url: 'assets/js/app.js', revision: '04.08.20.1'},
+  {url: 'assets/js/app.js', revision: '05.29.20.1'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/Bozenkill_Preserve2.jpg', revision: '04.08.20.1'},
   {url: 'maps/Fox_Preserve-10-3-17.jpg', revision: '04.08.20.1'},
   {url: 'maps/Holt_Preserve_2019.jpg', revision: '04.08.20.2'},
+  {url: 'maps/Hollyhock_Hollow_2020.jpg', revision: '05.29.20.1'},
   {url: 'maps/MHLC-Keleher-Preserve-Update-2017.jpg', revision: '04.08.20.1'},
   {url: 'maps/Mosher-Marsh-Update-2017.jpg', revision: '04.08.20.1'},
   {url: 'maps/Normanskill_Preserve.jpg', revision: '04.08.20.1'},
