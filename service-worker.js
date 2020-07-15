@@ -17,8 +17,8 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/img/mhlc-logo.png', revision: '04.08.20.1'},
   {url: 'assets/img/crosshair.svg', revision: '04.08.20.1'},
   {url: 'assets/img/ios-share.png', revision: '04.08.20.1'},
-  {url: 'assets/vendor/framework7-5.7.1/css/framework7.bundle.min.css', revision: '05.08.20.1'},
-  {url: 'assets/vendor/framework7-5.7.1/js/framework7.bundle.min.js', revision: '05.08.20.1'},
+  {url: 'assets/vendor/framework7-5.7.10/css/framework7.bundle.min.css', revision: '07.15.20.1'},
+  {url: 'assets/vendor/framework7-5.7.10/js/framework7.bundle.min.js', revision: '07.15.20.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.css', revision: '04.10.20.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.js', revision: '04.10.20.1'},
   {url: 'assets/vendor/proj4js-2.5.0/proj4.js', revision: '04.08.20.1'},
@@ -42,7 +42,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/Swift_Preserve1.jpg', revision: '04.08.20.1'},
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'},
-  {url: 'maps/Wolf_Creek_Falls_Preserve_2019.jpg', revision: '04.10.20.1'}
+  {url: 'maps/Wolf_Creek_Falls_Preserve_2020.jpg', revision: '07.15.20.1'}
 ]);
 
 self.addEventListener('activate', event => {
