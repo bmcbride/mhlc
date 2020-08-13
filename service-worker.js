@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '05.08.20.1'},
-  {url: './', revision: '05.08.20.1'}, // Alias for index.html
+  {url: 'index.html', revision: '08.15.20.1'},
+  {url: './', revision: '08.15.20.1'}, // Alias for index.html
   {url: 'maps.json', revision: '05.29.20.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
