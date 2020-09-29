@@ -138,6 +138,14 @@
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [664399.762, 1377707.114, 666526.013, 1380458.051]
 }, {
+  "name": "Touhey Family Preserve",
+  "description": "Description coming soon!",
+  "directions": [-73.87307,42.60828],
+  "url": "maps/Touhey_Family_Preserve 8_28_2020.jpg",
+  "link": "https://mohawkhudson.org/our-preserves/",
+  "projection": ["EPSG:26918","+proj=utm +zone=18 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"],
+  "extent": [591813.101, 4717698.343, 592595.632, 4718302.921]
+}, {
   "name": "Van Dyke Preserve",
   "description": "The 33-acre Van Dyke Preserve was donated to Mohawk Hudson Land Conservancy in 2012 by the developers of the nearby VanDyke Spinney housing complex in association with the Town of Bethlehem.",
   "directions": [-73.85583,42.59567],
