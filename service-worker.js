@@ -18,7 +18,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/img/crosshair.svg', revision: '04.08.20.1'},
   {url: 'assets/img/ios-share.png', revision: '04.08.20.1'},
   {url: 'assets/img/geolocation_marker.png', revision: '09.30.20.2'},
-  {url: 'assets/img/geolocation_marker_heading', revision: '09.30.20.2'},
+  {url: 'assets/img/geolocation_marker_heading.png', revision: '09.30.20.3'},
   {url: 'assets/vendor/framework7-5.7.12/css/framework7.bundle.min.css', revision: '09.29.20.1'},
   {url: 'assets/vendor/framework7-5.7.12/js/framework7.bundle.min.js', revision: '09.29.20.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.css', revision: '04.10.20.1'},
