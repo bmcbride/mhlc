@@ -7,7 +7,6 @@ workbox.setConfig({
 
 workbox.precaching.precacheAndRoute([
   {url: 'index.html', revision: '10.05.20.3'},
-  {url: './', revision: '10.05.20.3'}, // Alias for index.html
   {url: 'maps.json', revision: '10.05.20.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
@@ -46,7 +45,10 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'},
   {url: 'maps/Wolf_Creek_Falls_Preserve_2020.jpg', revision: '07.15.20.1'}
-]);
+], {
+  // Ignore all URL parameters.
+  ignoreURLParametersMatching: [/.*/]
+});
 
 self.addEventListener('activate', event => {
   event.waitUntil(
