@@ -139,10 +139,10 @@
   "extent": [664399.762, 1377707.114, 666526.013, 1380458.051]
 }, {
   "name": "Touhey Family Preserve",
-  "description": "Description coming soon!",
+  "description": "This 49-acre property was the original homestead of the Touhey family and is what remains of the more than 100-acre farm that stretched from Orchard Street to Delaware Avenue.",
   "directions": [-73.87307,42.60828],
   "url": "maps/Touhey_Family_Preserve 8_28_2020.jpg",
-  "link": "https://mohawkhudson.org/our-preserves/",
+  "link": "https://mohawkhudson.org/our-preserves/touhey-family-preserve/",
   "projection": ["EPSG:26918","+proj=utm +zone=18 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"],
   "extent": [591813.101, 4717698.343, 592595.632, 4718302.921]
 }, {
