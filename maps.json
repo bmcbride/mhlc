@@ -63,10 +63,10 @@
   "name": "Holt Preserve",
   "description": "Winifred Matthews Holt Preserve is a 148-acre property on the western face of Copeland Hill in the Town of New Scotland. The preserve is visible from Route 32 and from neighboring hills. The preserve rises at the edge of the flat area known as Indian Fields. Dr. William Holt and Winifred Matthews Holt donated this hillside to the Mohawk Hudson Land Conservancy in 1994.",
   "directions": [-73.92737,42.54389],
-  "url": "maps/Holt_Preserve_2019.jpg",
+  "url": "maps/Holt_Trail_Map_2020.jpg",
   "link": "https://mohawkhudson.org/our-preserves/holt-preserve/",
   "projection": ["EPSG:26918","+proj=utm +zone=18 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"],
-  "extent": [587202.405, 4710419.073, 588771.233, 4711631.935]
+  "extent": [587313.391, 4710413.369, 588903.372, 4711641.829]
 }, {
   "name": "Keleher Preserve",
   "description": "The original 287 acre property was a gift of Katherine and John Barber of Seattle, WA in 2010. The property, better known as Wolf Hill, is part of the Helderberg Escarpment. In 2014 MHLC was able to purchase an additional 160 acres from Mark Warner, a relative of the Barbers, bringing the preserves total acreage to 447.",
