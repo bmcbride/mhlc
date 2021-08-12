@@ -114,7 +114,7 @@ app.layers = {
         url: "https://orthos.its.ny.gov/arcgis/services/wms/Latest/MapServer/WmsServer",
         attributions: "<a href='http://orthos.dhses.ny.gov/arcgis/rest/' class='external'>NYS</a>",
         params: {
-          "LAYERS": "0,1,2,3,4",
+          "LAYERS": "0,1,2,3",
           "TILED": true
         },
         transition: 0

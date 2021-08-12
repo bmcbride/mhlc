@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '12.14.20.2'},
-  {url: 'maps.json', revision: '12.14.20.1'},
+  {url: 'index.html', revision: '08.12.21.1'},
+  {url: 'maps.json', revision: '08.12.21.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -26,7 +26,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/kompas-0.0.1/kompas.js', revision: '04.08.20.1'},
   {url: 'assets/fonts/MaterialIcons-Regular.woff2', revision: '04.08.20.1'},
   {url: 'assets/css/app.css', revision: '04.08.20.1'},
-  {url: 'assets/js/app.js', revision: '05.29.20.1'},
+  {url: 'assets/js/app.js', revision: '08.12.21.1'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/Bozenkill_Preserve2.jpg', revision: '04.08.20.1'},
@@ -44,7 +44,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/Touhey_Family_Preserve 8_28_2020.jpg', revision: '09.29.20.1'},
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'},
-  {url: 'maps/Wolf_Creek_Falls_Preserve_2020.jpg', revision: '07.15.20.1'}
+  {url: 'maps/2021FINAL_NORTH_WCF_Map.jpg', revision: '08.12.21.1'}
 ], {
   // Ignore all URL parameters.
   ignoreURLParametersMatching: [/.*/]
