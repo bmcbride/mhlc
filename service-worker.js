@@ -7,7 +7,7 @@ workbox.setConfig({
 
 workbox.precaching.precacheAndRoute([
   {url: 'index.html', revision: '08.12.21.1'},
-  {url: 'maps.json', revision: '08.12.21.1'},
+  {url: 'maps.json', revision: '12.09.21.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -28,6 +28,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/css/app.css', revision: '04.08.20.1'},
   {url: 'assets/js/app.js', revision: '08.12.21.1'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
+  {url: 'maps/Bender_Melon_Farm.jpg', revision: '12.09.21.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/Bozenkill_Preserve2.jpg', revision: '04.08.20.1'},
   {url: 'maps/Fox_Preserve-10-3-17.jpg', revision: '04.08.20.1'},
