@@ -1,7 +1,7 @@
 var $$ = Dom7;
 
 var app = new Framework7({
-  root: "#app",
+  el: "#app",
   theme: "md",
   init: false,
   view: {

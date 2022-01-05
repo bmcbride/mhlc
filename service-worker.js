@@ -6,7 +6,7 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '08.12.21.1'},
+  {url: 'index.html', revision: '01.04.22.1'},
   {url: 'maps.json', revision: '12.09.21.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
@@ -18,15 +18,15 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/img/ios-share.png', revision: '04.08.20.1'},
   {url: 'assets/img/geolocation_marker.png', revision: '09.30.20.2'},
   {url: 'assets/img/geolocation_marker_heading.png', revision: '09.30.20.3'},
-  {url: 'assets/vendor/framework7-5.7.14/css/framework7.bundle.min.css', revision: '12.14.20.1'},
-  {url: 'assets/vendor/framework7-5.7.14/js/framework7.bundle.min.js', revision: '12.14.20.1'},
+  {url: 'assets/vendor/framework7-6.3.14/framework7-bundle.min.css', revision: '01.04.22.1'},
+  {url: 'assets/vendor/framework7-6.3.14/framework7-bundle.min.js', revision: '01.04.22.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.css', revision: '04.10.20.1'},
   {url: 'assets/vendor/openlayers-6.3.1/ol.js', revision: '04.10.20.1'},
   {url: 'assets/vendor/proj4js-2.5.0/proj4.js', revision: '04.08.20.1'},
   {url: 'assets/vendor/kompas-0.0.1/kompas.js', revision: '04.08.20.1'},
   {url: 'assets/fonts/MaterialIcons-Regular.woff2', revision: '04.08.20.1'},
   {url: 'assets/css/app.css', revision: '04.08.20.1'},
-  {url: 'assets/js/app.js', revision: '08.12.21.1'},
+  {url: 'assets/js/app.js', revision: '01.04.22.1'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
   {url: 'maps/Bender_Melon_Farm.jpg', revision: '12.09.21.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},

@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-    <link rel="stylesheet" href="assets/vendor/framework7-5.7.14/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="assets/vendor/framework7-6.3.14/framework7-bundle.min.css">
     <link rel="stylesheet" href="assets/vendor/openlayers-6.3.1/ol.css">
     <link rel="stylesheet" href="assets/css/app.css">
   </head>
@@ -146,7 +146,7 @@
                       <div class="item-content">
                         <div class="item-inner">
                           <div class="item-title">Release Version</div>
-                          <div class="item-after">2021.08.12.1</div>
+                          <div class="item-after">2022.01.04.1</div>
                         </div>
                       </div>
                     </li>
@@ -234,13 +234,48 @@
                 </ul>
               </div>
               <div class="block-title">Tools</div>
-              <div class="list">
+              <div class="list no-chevron">
                 <ul>
-                  <li><a class="item-link list-button panel-close" onclick="app.map.getView().setRotation(0); app.map.getView().fit(app.layers.image.getExtent(), {constrainResolution: false});">Zoom to Map</a></li>
-                  <li><a class="item-link list-button panel-close" onclick="app.functions.startMeasurement();">Measure Distance</a></li>
-                  <li><a class="item-link list-button panel-close" onclick="app.functions.getDirections();">Driving Directions</a></li>
-                  <li><a class="item-link list-button panel-close" onclick="app.functions.launchGmaps();">Open Google Maps</a></li>
-                  <li><a class="item-link list-button panel-close external" id="info-link" href="#" target="_blank">Additional Info</a></li>
+                  <li class="panel-close">
+                    <a href="#" class="item-link item-content" onclick="app.map.getView().setRotation(0); app.map.getView().fit(app.layers.image.getExtent(), {constrainResolution: false});">
+                      <div class="item-media"><i class="icon material-icons">zoom_out_map</i></div>
+                      <div class="item-inner">
+                        <div class="item-title">Zoom to Map</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="panel-close">
+                    <a href="#" class="item-link item-content" onclick="app.functions.startMeasurement();">
+                      <div class="item-media"><i class="icon material-icons">straighten</i></div>
+                      <div class="item-inner">
+                        <div class="item-title">Measure Distance</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="panel-close">
+                    <a href="#" class="item-link item-content" onclick="app.functions.getDirections();">
+                      <div class="item-media"><i class="icon material-icons">directions</i></div>
+                      <div class="item-inner">
+                        <div class="item-title">Driving Directions</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="panel-close">
+                    <a href="#" class="item-link item-content" onclick="app.functions.launchGmaps();">
+                      <div class="item-media"><i class="icon material-icons">map</i></div>
+                      <div class="item-inner">
+                        <div class="item-title">Open Google Maps</div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="panel-close">
+                    <a href="#" class="item-link item-content external" id="info-link" target="_blank">
+                      <div class="item-media"><i class="icon material-icons">open_in_new</i></div>
+                      <div class="item-inner">
+                        <div class="item-title">Additional Info</div>
+                      </div>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -334,7 +369,7 @@
         </div>
       </div>
     </div>
-    <script src="assets/vendor/framework7-5.7.14/js/framework7.bundle.min.js"></script>
+    <script src="assets/vendor/framework7-6.3.14/framework7-bundle.min.js"></script>
     <script src="assets/vendor/openlayers-6.3.1/ol.js"></script>
     <script src="assets/vendor/proj4js-2.5.0/proj4.js"></script>
     <script src="assets/vendor/kompas-0.0.1/kompas.js"></script>
