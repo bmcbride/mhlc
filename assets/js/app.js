@@ -6,8 +6,8 @@ var app = new Framework7({
   init: false,
   view: {
     stackPages: true,
-    pushState: true,
-    pushStateOnLoad: true
+    browserHistory: true,
+    browserHistoryOnLoad: true
   },
   routes: [{
     name: "home",

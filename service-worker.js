@@ -6,7 +6,7 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '01.04.22.1'},
+  {url: 'index.html', revision: '01.04.22.2'},
   {url: 'maps.json', revision: '12.09.21.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
@@ -26,7 +26,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/vendor/kompas-0.0.1/kompas.js', revision: '04.08.20.1'},
   {url: 'assets/fonts/MaterialIcons-Regular.woff2', revision: '04.08.20.1'},
   {url: 'assets/css/app.css', revision: '04.08.20.1'},
-  {url: 'assets/js/app.js', revision: '01.04.22.1'},
+  {url: 'assets/js/app.js', revision: '01.04.22.2'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
   {url: 'maps/Bender_Melon_Farm.jpg', revision: '12.09.21.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
