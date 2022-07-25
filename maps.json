@@ -173,8 +173,8 @@
   "name": "Wolf Creek Falls Preserve",
   "description": "Wolf Creek Falls Preserve, opened in the Fall of 2007, consists of 135 acres in the Town of Knox, and was a gift of Steve Brown, a retired SUNY professor. This gorgeous parcel, which is open for public hiking, contains streams and waterfalls, a wetland, and numerous old stone walls.",
   "directions": [-74.08549,42.72151],
-  "url": "maps/2021FINAL_NORTH_WCF_Map.jpg",
+  "url": "maps/2022_Wolf_Creek_Falls_Preserve_Map.jpg",
   "link": "https://mohawkhudson.org/our-preserves/wolf-creek-falls-preserve/",
   "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [2354248.772, 1022639.513, 2358745.825, 1026117.501]
+  "extent": [2354127.449, 1022621.698, 2358712.432, 1026161.139]
 }]
