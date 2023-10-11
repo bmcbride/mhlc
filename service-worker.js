@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '08.15.23.1'},
-  {url: 'maps.json', revision: '08.15.23.1'},
+  {url: 'index.html', revision: '10.11.23.1'},
+  {url: 'maps.json', revision: '10.11.23.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -46,7 +46,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/Touhey_Family_Preserve 8_28_2020.jpg', revision: '09.29.20.1'},
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Winn_Preserve-2018.jpg', revision: '04.10.20.1'},
-  {url: 'maps/2021FINAL_NORTH_WCF_Map.jpg', revision: '08.12.21.1'}
+  {url: 'maps/WCF_LP_2023.jpg', revision: '10.11.23.1'}
 ], {
   // Ignore all URL parameters.
   ignoreURLParametersMatching: [/.*/]
