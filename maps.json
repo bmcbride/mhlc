@@ -95,10 +95,10 @@
   "name": "Mosher Marsh Preserve",
   "description": "Ellie Peters donated this 43-acre preserve to MHLC in 2008. It consists largely of a natural wetland with several shallow man-made ponds to enhance wildlife habitat. A small stream, a tributary to the Chuctanunda Creek, flows through the middle of the property. The site also contains a mix of fields with woods and a historic family cemetery. There is a loop trail with a 300 foot boardwalk that runs through the wetland.",
   "directions": [-74.14629,42.95397],
-  "url": "maps/Mosher-Marsh-Update-2017.jpg",
+  "url": "maps/MosherTrails_2023.jpg",
   "link": "https://www.mohawkhudson.org/preserves/mosher-marsh",
-  "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [2333631.287, 1106029.264, 2336752.883, 1108438.682]
+  "projection": ["EPSG:3857","+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs"],
+  "extent": [-8255010.587, 5304313.252, -8253826.792, 5305227.978]
 }, {
   "name": "Normans Kill Preserves",
   "description": "The Normans Kill Preserves consist of three parcels that were obtained from Albany County in 2005 because of non-payment of taxes. The three parcels total 46 acres. They are on both sides of the year-2000 Delaware Avenue landslide; and include over a half-mile of the frontage on the Normans Kill in an area directly across from the City of Albany’s Stevens Farm.",
