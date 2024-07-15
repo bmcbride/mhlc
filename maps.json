@@ -39,10 +39,10 @@
   "name": "Bender Melon Farm",
   "description": "At the intersection of Routes 85 and 85A in the Town of New Scotland remains 198 acres of historic farmland. At the turn of the twentieth century this land was made famous by Charles Bender whose Bender Melon, a prized cantaloupe variety he developed and cultivated, put this property on the agricultural map.",
   "directions": [-73.90518,42.64477],
-  "url": "maps/BenderMelonFarmPreserve_2022.jpg",
+  "url": "maps/BMFP_2024.jpg",
   "link": "https://www.mohawkhudson.org/preserves/bender-melon-farm",
-  "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [651571.860, 1384379.593, 655535.483, 1389506.622]
+  "projection": ["EPSG:4326","+proj=longlat +datum=WGS84 +no_defs +type=crs"],
+  "extent": [-73.908848, 42.631135, -73.88959, 42.646016]
 }, {
   "name": "Bennett Hill Preserve",
   "description": "This 155 acre property was a gift from Dr. Jerry Bilinski of North Chatham in 1998. The hill towers over Clarksville and stands only a short distance from the base of the Helderberg Escarpment. Although the top of the hill is only 400 feet above the surrounding land, it offers striking views of the Helderbergs to the north and west, and Albany to the east.",
@@ -95,10 +95,10 @@
   "name": "Mosher Marsh Preserve",
   "description": "Ellie Peters donated this 43-acre preserve to MHLC in 2008. It consists largely of a natural wetland with several shallow man-made ponds to enhance wildlife habitat. A small stream, a tributary to the Chuctanunda Creek, flows through the middle of the property. The site also contains a mix of fields with woods and a historic family cemetery. There is a loop trail with a 300 foot boardwalk that runs through the wetland.",
   "directions": [-74.14629,42.95397],
-  "url": "maps/MosherTrails_2023.jpg",
+  "url": "maps/Mosher_Marsh_2024.jpg",
   "link": "https://www.mohawkhudson.org/preserves/mosher-marsh",
-  "projection": ["EPSG:3857","+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs"],
-  "extent": [-8255010.587, 5304313.252, -8253826.792, 5305227.978]
+  "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [2333704.916, 1106284.614, 2336505.146, 1108448.429]
 }, {
   "name": "Normans Kill Preserves",
   "description": "The Normans Kill Preserves consist of three parcels that were obtained from Albany County in 2005 because of non-payment of taxes. The three parcels total 46 acres. They are on both sides of the year-2000 Delaware Avenue landslide; and include over a half-mile of the frontage on the Normans Kill in an area directly across from the City of Albany’s Stevens Farm.",
