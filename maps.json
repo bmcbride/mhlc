@@ -39,10 +39,10 @@
   "name": "Bender Melon Farm",
   "description": "At the intersection of Routes 85 and 85A in the Town of New Scotland remains 198 acres of historic farmland. At the turn of the twentieth century this land was made famous by Charles Bender whose Bender Melon, a prized cantaloupe variety he developed and cultivated, put this property on the agricultural map.",
   "directions": [-73.90518,42.64477],
-  "url": "maps/BMFP_2024.jpg",
+  "url": "maps/BMFP_TrailMap_5.1.2025.jpg",
   "link": "https://www.mohawkhudson.org/preserves/bender-melon-farm",
-  "projection": ["EPSG:4326","+proj=longlat +datum=WGS84 +no_defs +type=crs"],
-  "extent": [-73.908848, 42.631135, -73.88959, 42.646016]
+  "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [651739.783, 1383696.285, 656133.142, 1389381.300]
 }, {
   "name": "Bennett Hill Preserve",
   "description": "This 155 acre property was a gift from Dr. Jerry Bilinski of North Chatham in 1998. The hill towers over Clarksville and stands only a short distance from the base of the Helderberg Escarpment. Although the top of the hill is only 400 feet above the surrounding land, it offers striking views of the Helderbergs to the north and west, and Albany to the east.",
@@ -133,18 +133,18 @@
   "name": "Schoharie Creek Preserve",
   "description": "The 198-acre Schoharie Creek Preserve was given to the Conservancy in 1998 by Drs. Lester Citrin and Clifford Tepper of Schenectady. The preserve is located in Montgomery County on the west bank of the Schoharie Creek, about a mile north of Burtonsville.",
   "directions": [-74.26591,42.81722],
-  "url": "maps/SchoharieCreek_2023.jpg",
+  "url": "maps/SchoharieCreekPreserve_May2025.jpg",
   "link": "https://www.mohawkhudson.org/preserves/schoharie-creek-preserve",
-  "projection": ["EPSG:4326","+proj=longlat +datum=WGS84 +no_defs +type=crs"],
-  "extent": [-74.268717, 42.813580, -74.260950, 42.823631]
+  "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [553765.295, 1450182.018, 556598.975, 1453852.959]
 }, {
   "name": "Strawberry Fields Nature Preserve",
   "description": "Strawberry Fields is 118 acres of protected land. The property includes the nature preserve, a family homestead, and a working farm. The property was protected in 2013 under a conservation easement with MHLC. In 2017, Jeff Leon, steward of the preserve, officially opened Strawberry Fields Nature Preserve to the public.",
   "directions": [-74.12685,42.92562],
-  "url": "maps/StrawberryFields_Preserve.jpg",
+  "url": "maps/SFNP_trails_05.2025.jpg",
   "link": "https://www.mohawkhudson.org/preserves/strawberry-fields-nature-preserve",
-  "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [590911.715, 1489213.758, 595311.403, 1492616.026]
+  "projection": ["EPSG:2262","+proj=tmerc +lat_0=40 +lon_0=-78.58333333333333 +k=0.9999375 +x_0=350000.0001016001 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
+  "extent": [2340906.607, 1095866.716, 2345032.036, 1099055.798]
 }, {
   "name": "Swift Wetland",
   "description": "This 21.6-acre wetland in Delmar, located directly across Delaware Avenue from the Bethlehem Central High School sports field, was a gift from the Swift Group. The Preserve was created to protect the wetlands remaining after homes were constructed on neighboring parcels. It includes a 1-acre man-made wetland, built to help compensate for the natural wetlands that were filled in.",

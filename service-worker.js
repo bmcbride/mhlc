@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '12.09.24.1'},
-  {url: 'maps.json', revision: '12.09.24.1'},
+  {url: 'index.html', revision: '06.16.25.1'},
+  {url: 'maps.json', revision: '06.16.25.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -29,7 +29,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/js/app.js', revision: '01.04.22.2'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
   {url: 'maps/AshfordGlen_2023.jpg', revision: '07.07.22.1'},
-  {url: 'maps/BMFP_2024.jpg', revision: '07.15.24.1'},
+  {url: 'maps/BMFP_TrailMap_5.1.2025.jpg', revision: '06.16.25.2'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
   {url: 'maps/BozenKill_Trails_11.22.24.jpg', revision: '12.09.24.1'},
   {url: 'maps/Fox_Preserve-10-3-17.jpg', revision: '04.08.20.1'},
@@ -40,8 +40,8 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/Normanskill_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/Phillipinkill_Preserve.jpg', revision: '04.08.20.1'},
   {url: 'maps/SchiffendeckerFarm_2022.jpg', revision: '10.21.22.1'},
-  {url: 'maps/SchoharieCreek_2023.jpg', revision: '07.07.23.1'},
-  {url: 'maps/StrawberryFields_Preserve.jpg', revision: '04.08.20.1'},
+  {url: 'maps/SchoharieCreekPreserve_May2025.jpg', revision: '06.16.25.1'},
+  {url: 'maps/SFNP_trails_05.2025.jpg', revision: '06.16.25.1'},
   {url: 'maps/Swift_Preserve1.jpg', revision: '04.08.20.1'},
   {url: 'maps/Touhey_Family_Preserve 8_28_2020.jpg', revision: '09.29.20.1'},
   {url: 'maps/VanDyke_Entire_Preserve.jpg', revision: '04.08.20.1'},
