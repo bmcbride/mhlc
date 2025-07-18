@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '06.16.25.1'},
-  {url: 'maps.json', revision: '06.16.25.1'},
+  {url: 'index.html', revision: '07.17.25.1'},
+  {url: 'maps.json', revision: '07.17.25.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -28,6 +28,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'assets/css/app.css', revision: '04.08.20.1'},
   {url: 'assets/js/app.js', revision: '01.04.22.2'},
   {url: 'maps/AlbCo_RailTrail.jpg', revision: '04.08.20.1'},
+  {url: 'maps/Alplaus_noQR_July15.2025.jpg', revision: '07.17.25.1'},
   {url: 'maps/AshfordGlen_2023.jpg', revision: '07.07.22.1'},
   {url: 'maps/BMFP_TrailMap_5.1.2025.jpg', revision: '06.16.25.2'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},

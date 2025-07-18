@@ -28,6 +28,14 @@
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
   "extent": [643674.386, 1378668.602, 691677.074, 1394668.984]
 }, {
+  "name": "Alplaus Kill Preserve",
+  "description": "The Alplaus Kill Preserve boasts a scenic trail that meanders through the open field and into the woodlands of the 54-acre property.",
+  "directions": [-73.905786,42.856029],
+  "url": "maps/Alplaus_noQR_July15.2025.jpg",
+  "link": "https://www.mohawkhudson.org/preserves/schenectady-county",
+  "projection": ["EPSG:3857","+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs"],
+  "extent": [-8227392.020, 5289736.039, -8226008.319, 5291526.679]
+}, {
   "name": "Ashford Glen Preserve",
   "description": "Nestled within a small neighborhood, this short woodland trail is incredibly scenic with tall conifers tucked along the Vly Creek.",
   "directions": [-73.90518,42.64477],
