@@ -47,10 +47,10 @@
   "name": "Bender Melon Farm",
   "description": "At the intersection of Routes 85 and 85A in the Town of New Scotland remains 198 acres of historic farmland. At the turn of the twentieth century this land was made famous by Charles Bender whose Bender Melon, a prized cantaloupe variety he developed and cultivated, put this property on the agricultural map.",
   "directions": [-73.90518,42.64477],
-  "url": "maps/BMFP_TrailMap_5.1.2025.jpg",
+  "url": "maps/BMFP_Trailmap_7.22.25.jpg",
   "link": "https://www.mohawkhudson.org/preserves/bender-melon-farm",
   "projection": ["EPSG:2260","+proj=tmerc +lat_0=38.83333333333334 +lon_0=-74.5 +k=0.9999 +x_0=150000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs"],
-  "extent": [651739.783, 1383696.285, 656133.142, 1389381.300]
+  "extent": [651717.443, 1383740.207, 656110.134, 1389424.865]
 }, {
   "name": "Bennett Hill Preserve",
   "description": "This 155 acre property was a gift from Dr. Jerry Bilinski of North Chatham in 1998. The hill towers over Clarksville and stands only a short distance from the base of the Helderberg Escarpment. Although the top of the hill is only 400 feet above the surrounding land, it offers striking views of the Helderbergs to the north and west, and Albany to the east.",
