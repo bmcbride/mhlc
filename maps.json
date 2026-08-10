@@ -63,10 +63,10 @@
   "name": "Bozen Kill Preserve",
   "description": "Flowing from the Helderberg Escarpment, the Bozen Kill is little known beyond Altamont and the Hilltowns. The stream originates from wetlands in Schenectady County and Duane Lake near Delanson and builds as it heads off the mountain.",
   "directions": [-74.04627,42.71482],
-  "url": "maps/BozenKill_Trails_11.22.24.jpg",
+  "url": "maps/BZK_Trails_July2026.jpg",
   "link": "https://www.mohawkhudson.org/preserves/bozen-kill-preserve",
   "projection": ["EPSG:4326","+proj=longlat +datum=WGS84 +no_defs +type=crs"],
-  "extent": [-74.0750583, 42.7062138, -74.0449316, 42.7294854]
+  "extent": [-74.075198, 42.705814, -74.045082, 42.729085]
 }, {
   "name": "Fox Preserve",
   "description": "This 70-acre property in Colonie was donated to the Mohawk Hudson Land Conservancy by Dr. Patricia Fox in 2015. Dr. Fox owned the property for over 30 years, and it is one of the last remaining areas of open space in this area of the Town of Colonie. Through her generous donation, this Preserve was opened to the public on October 21st, 2017.",

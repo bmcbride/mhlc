@@ -6,8 +6,8 @@ workbox.setConfig({
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: 'index.html', revision: '09.08.25.1'},
-  {url: 'maps.json', revision: '09.08.25.1'},
+  {url: 'index.html', revision: '08.10.26.1'},
+  {url: 'maps.json', revision: '08.10.26.1'},
   {url: 'assets/img/apple-touch-icon.png', revision: '04.08.20.1'},
   {url: 'assets/img/android-chrome-192x192.png', revision: '04.08.20.1'},
   {url: 'assets/img/favicon-32x32.png', revision: '04.08.20.1'},
@@ -32,7 +32,7 @@ workbox.precaching.precacheAndRoute([
   {url: 'maps/AshfordGlen_2023.jpg', revision: '07.07.22.1'},
   {url: 'maps/BMFP_Trailmap_7.22.25.jpg', revision: '09.08.25.1'},
   {url: 'maps/Bennett_Hill_Map_2019.jpg', revision: '04.10.20.1'},
-  {url: 'maps/BozenKill_Trails_11.22.24.jpg', revision: '12.09.24.1'},
+  {url: 'maps/BZK_Trails_July2026.jpg', revision: '08.10.26.1'},
   {url: 'maps/Fox_Preserve-10-3-17.jpg', revision: '04.08.20.1'},
   {url: 'maps/Holt_Trail_Map_Jan2024.jpg', revision: '01.18.24.1'},
   {url: 'maps/Hollyhock_Hollow_2020.jpg', revision: '05.29.20.1'},
